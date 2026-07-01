@@ -87,8 +87,11 @@ export default function Home({ setActiveSection }) {
   return (
     <>
       <Helmet>
-        <title>{personalInfo.name} — Premium MERN Stack Developer & Software Consultant</title>
-        <meta name="description" content={personalInfo.summary} />
+        <title>Hari Prasath K | Freelance MERN Stack Developer</title>
+        <meta name="description" content="Official portfolio of Hari Prasath K, a Freelance MERN Stack Developer specializing in React, Node.js, Express.js, MongoDB, CRM systems, Learning Management Systems, and business automation solutions." />
+        <meta property="og:title" content="Hari Prasath K | Freelance MERN Stack Developer" />
+        <meta property="og:description" content="Official portfolio of Hari Prasath K, a Freelance MERN Stack Developer specializing in React, Node.js, Express.js, MongoDB, CRM systems, Learning Management Systems, and business automation solutions." />
+        <meta name="twitter:title" content="Hari Prasath K | Freelance MERN Stack Developer" />
       </Helmet>
 
       {/* HERO SECTION */}

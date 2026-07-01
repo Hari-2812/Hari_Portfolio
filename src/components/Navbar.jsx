@@ -95,7 +95,7 @@ export default function Navbar({ activeSection }) {
           onClick={(e) => handleNavClick(e, 'hero')}
           className="text-lg font-extrabold tracking-tight text-text-primary font-heading flex items-center gap-1.5"
         >
-          <span className="w-8 h-8 rounded-lg bg-linear-to-tr from-brand to-purple flex items-center justify-center text-white text-base">
+          <span className="w-8 h-8 rounded-lg bg-brand flex items-center justify-center text-white text-base">
             H
           </span>
           <span>Hari Prasath<span className="text-brand">.</span></span>

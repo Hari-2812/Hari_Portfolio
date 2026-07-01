@@ -113,7 +113,7 @@ export default function Footer() {
             {/* Left branding (4 cols) */}
             <div className="lg:col-span-4 space-y-4">
               <span className="text-lg font-black font-heading text-text-primary flex items-center gap-1.5 select-none">
-                <span className="w-7 h-7 rounded-lg bg-linear-to-tr from-brand to-purple flex items-center justify-center text-white text-sm">
+                <span className="w-7 h-7 rounded-lg bg-brand flex items-center justify-center text-white text-sm">
                   H
                 </span>
                 <span>Hari Prasath<span className="text-brand">.</span></span>

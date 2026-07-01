@@ -34,8 +34,11 @@ export default function ProjectDetail() {
   return (
     <>
       <Helmet>
-        <title>{project.title} — Case Study | Hari Prasath K</title>
+        <title>{project.title} | Hari Prasath K</title>
         <meta name="description" content={project.shortDescription} />
+        <meta property="og:title" content={`${project.title} | Hari Prasath K`} />
+        <meta property="og:description" content={project.shortDescription} />
+        <meta name="twitter:title" content={`${project.title} | Hari Prasath K`} />
       </Helmet>
 
       <main className="bg-bg-primary pt-24 pb-20 overflow-hidden">
