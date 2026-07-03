@@ -3,7 +3,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export default function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
-  const [hoverState, setHoverState] = useState('default'); // 'default', 'interactive', 'terminal', 'spotlight'
+  const [hoverState, setHoverState] = useState('default'); // 'default', 'interactive', 'gallery', 'contact'
   const [hoverText, setHoverText] = useState('');
   const [ripples, setRipples] = useState([]);
   const [isTouchDevice, setIsTouchDevice] = useState(true);
@@ -11,7 +11,7 @@ export default function CustomCursor() {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  const springConfig = { damping: 28, stiffness: 350, mass: 0.45 };
+  const springConfig = { damping: 30, stiffness: 400, mass: 0.4 };
   const ringX = useSpring(mouseX, springConfig);
   const ringY = useSpring(mouseY, springConfig);
 
@@ -33,11 +33,9 @@ export default function CustomCursor() {
     if (isTouchDevice) return;
 
     const handleMouseMove = (e) => {
-      // Find magnetic attraction elements
       const magneticTargets = document.querySelectorAll('.magnetic-attract');
       let targetX = e.clientX;
       let targetY = e.clientY;
-      let isAttracted = false;
 
       magneticTargets.forEach((target) => {
         const rect = target.getBoundingClientRect();
@@ -47,11 +45,9 @@ export default function CustomCursor() {
         };
         const distance = Math.hypot(e.clientX - center.x, e.clientY - center.y);
 
-        // Pull cursor closer if distance is less than 50px
-        if (distance < 50) {
-          targetX = center.x + (e.clientX - center.x) * 0.35;
-          targetY = center.y + (e.clientY - center.y) * 0.35;
-          isAttracted = true;
+        if (distance < 45) {
+          targetX = center.x + (e.clientX - center.x) * 0.3;
+          targetY = center.y + (e.clientY - center.y) * 0.3;
         }
       });
 
@@ -73,8 +69,8 @@ export default function CustomCursor() {
       const target = e.target;
       if (!target) return;
 
-      const consoleEl = target.closest('.console-hover');
-      const spotlightEl = target.closest('.project-window-spotlight');
+      const galleryEl = target.closest('.project-gallery-hover');
+      const contactEl = target.closest('.contact-terminal-hover');
       const isInteractive = 
         target.tagName === 'A' || 
         target.tagName === 'BUTTON' || 
@@ -85,12 +81,12 @@ export default function CustomCursor() {
         target.closest('.interactive-hover') ||
         window.getComputedStyle(target).cursor === 'pointer';
 
-      if (consoleEl) {
-        setHoverState('terminal');
-        setHoverText(consoleEl.getAttribute('data-cursor-text') || 'src_');
-      } else if (spotlightEl) {
-        setHoverState('spotlight');
-        setHoverText(spotlightEl.getAttribute('data-cursor-text') || 'LAUNCH_LAB');
+      if (galleryEl) {
+        setHoverState('gallery');
+        setHoverText(galleryEl.getAttribute('data-cursor-text') || 'EXPLORE');
+      } else if (contactEl) {
+        setHoverState('contact');
+        setHoverText('HIRE');
       } else if (isInteractive) {
         setHoverState('interactive');
         setHoverText('');
@@ -136,7 +132,7 @@ export default function CustomCursor() {
       {ripples.map((ripple) => (
         <motion.div
           key={ripple.id}
-          className="fixed w-6 h-6 rounded-full border border-brand-blue pointer-events-none z-9999"
+          className="fixed w-6 h-6 rounded-full border border-brand-terracotta pointer-events-none z-9999"
           initial={{ x: ripple.x - 12, y: ripple.y - 12, scale: 0.2, opacity: 0.8 }}
           animate={{ scale: 2.2, opacity: 0 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
@@ -147,11 +143,10 @@ export default function CustomCursor() {
       <motion.div
         className="fixed top-0 left-0 rounded-full border border-text-primary pointer-events-none z-9998 flex items-center justify-center overflow-hidden"
         animate={{
-          width: hoverState === 'interactive' ? 32 : hoverState === 'terminal' ? 72 : hoverState === 'spotlight' ? 96 : 18,
-          height: hoverState === 'interactive' ? 32 : hoverState === 'terminal' ? 24 : hoverState === 'spotlight' ? 96 : 18,
-          backgroundColor: hoverState === 'spotlight' ? 'rgba(37, 99, 235, 0.12)' : 'rgba(0,0,0,0)',
-          borderColor: hoverState === 'spotlight' ? '#2563EB' : hoverState === 'terminal' ? '#7C3AED' : 'var(--text-primary)',
-          borderRadius: hoverState === 'terminal' ? '4px' : '9999px',
+          width: hoverState === 'interactive' ? 32 : hoverState === 'gallery' ? 84 : hoverState === 'contact' ? 64 : 16,
+          height: hoverState === 'interactive' ? 32 : hoverState === 'gallery' ? 84 : hoverState === 'contact' ? 64 : 16,
+          backgroundColor: hoverState === 'gallery' ? 'rgba(194, 65, 12, 0.1)' : 'rgba(0,0,0,0)',
+          borderColor: hoverState === 'gallery' ? '#C2410C' : hoverState === 'contact' ? '#D97706' : 'var(--text-primary)',
         }}
         style={{
           x: ringX,
@@ -159,10 +154,10 @@ export default function CustomCursor() {
           translateX: '-50%',
           translateY: '-50%',
         }}
-        transition={{ type: "spring", stiffness: 480, damping: 30 }}
+        transition={{ type: "spring", stiffness: 450, damping: 28 }}
       >
         {hoverText && (
-          <span className="font-mono text-[9px] font-bold select-none text-text-primary uppercase tracking-widest">
+          <span className="font-mono text-[8px] font-bold select-none text-brand-terracotta uppercase tracking-widest">
             {hoverText}
           </span>
         )}
@@ -170,7 +165,7 @@ export default function CustomCursor() {
 
       {/* Precision Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-1.5 h-1.5 bg-brand-blue rounded-full pointer-events-none z-9999"
+        className="fixed top-0 left-0 w-1.5 h-1.5 bg-brand-terracotta rounded-full pointer-events-none z-9999"
         style={{
           x: mouseX,
           y: mouseY,

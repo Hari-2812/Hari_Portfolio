@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon, ArrowUpRight, Cpu } from 'lucide-react';
+import { Menu, X, Sun, Moon, ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import Magnet from './Magnet';
@@ -62,13 +62,13 @@ export default function Navbar({ activeSection }) {
   }, [lastScrollY]);
 
   const navLinks = [
-    { id: 'hero', label: 'Console' },
+    { id: 'hero', label: 'Studio' },
     { id: 'about', label: 'Profile' },
-    { id: 'skills', label: 'Architecture' },
+    { id: 'skills', label: 'Universe' },
     { id: 'services', label: 'Services' },
-    { id: 'projects', label: 'Lab' },
-    { id: 'timeline', label: 'Evolution' },
-    { id: 'contact', label: 'Console_Intake' }
+    { id: 'projects', label: 'Gallery' },
+    { id: 'timeline', label: 'Growth' },
+    { id: 'contact', label: 'Intake' }
   ];
 
   const handleNavClick = (e, id) => {
@@ -92,11 +92,10 @@ export default function Navbar({ activeSection }) {
 
   return (
     <>
-      {/* Scroll Progress indicator */}
       <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }} />
 
       <header 
-        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-6xl transition-all duration-500 rounded-full border border-border-primary/50 glass-panel px-6 py-3.5 shadow-premium ${
+        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-6xl transition-all duration-500 rounded-2xl border border-border-primary/50 studio-glass px-6 py-3.5 shadow-premium ${
           visible ? 'translate-y-0 opacity-100' : '-translate-y-28 opacity-0'
         }`}
       >
@@ -105,21 +104,21 @@ export default function Navbar({ activeSection }) {
           <Link 
             to="/" 
             onClick={(e) => handleNavClick(e, 'hero')}
-            className="flex items-center gap-2 select-none group"
+            className="flex items-center gap-2.5 select-none group"
           >
-            <div className="w-8 h-8 rounded-full bg-brand-blue text-white flex items-center justify-center font-black text-sm transition-transform duration-300 group-hover:rotate-12">
+            <div className="w-8.5 h-8.5 rounded-lg bg-brand-forest text-white flex items-center justify-center font-serif font-bold text-base transition-transform duration-300 group-hover:scale-105">
               H
             </div>
             <div className="flex flex-col text-left">
-              <span className="text-sm font-black tracking-tight text-text-primary">Hari Prasath</span>
-              <span className="text-[9px] text-text-muted font-mono font-semibold -mt-1 flex items-center gap-1">
-                <Cpu size={8} /> STUDIO.EXE
+              <span className="text-sm font-bold tracking-tight text-text-primary font-serif">Hari Prasath</span>
+              <span className="text-[8px] text-brand-gold font-mono font-bold tracking-wider -mt-1">
+                SOFTWARE STUDIO
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6 font-mono text-[11px]">
+          {/* Desktop Links */}
+          <nav className="hidden md:flex items-center gap-6 font-mono text-[10px]">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id && isHomePage;
               return (
@@ -127,17 +126,17 @@ export default function Navbar({ activeSection }) {
                   key={link.id}
                   href={isHomePage ? `#${link.id}` : `/#${link.id}`}
                   onClick={(e) => handleNavClick(e, link.id)}
-                  className={`relative py-1 transition-colors duration-300 font-bold uppercase tracking-wider ${
+                  className={`relative py-1 transition-colors duration-300 font-bold uppercase tracking-widest ${
                     isActive 
-                      ? 'text-brand-blue font-extrabold' 
-                      : 'text-text-secondary hover:text-brand-blue'
+                      ? 'text-brand-forest font-extrabold' 
+                      : 'text-text-secondary hover:text-brand-forest'
                   }`}
                 >
                   {link.label}
                   {isActive && (
                     <motion.span 
-                      layoutId="activeDot"
-                      className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-brand-blue"
+                      layoutId="activeIndicator"
+                      className="absolute -bottom-1.5 left-0 w-full h-[1.5px] bg-brand-gold"
                     />
                   )}
                 </a>
@@ -145,11 +144,11 @@ export default function Navbar({ activeSection }) {
             })}
           </nav>
 
-          {/* Right Side Actions */}
+          {/* Actions */}
           <div className="hidden md:flex items-center gap-3">
             <button 
               onClick={toggleTheme}
-              className="w-8 h-8 rounded-full bg-bg-primary text-text-secondary border border-border-primary/80 flex items-center justify-center hover:bg-bg-secondary transition-colors cursor-pointer"
+              className="w-8.5 h-8.5 rounded-lg bg-bg-primary text-text-secondary border border-border-primary/80 flex items-center justify-center hover:bg-bg-secondary transition-colors cursor-pointer"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
@@ -160,18 +159,18 @@ export default function Navbar({ activeSection }) {
                 href={personalInfo.resumeUrl} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="bg-brand-blue hover:bg-brand-blue/95 text-white px-4 py-2 rounded-full text-[10px] font-bold font-mono tracking-wider uppercase inline-flex items-center gap-1 transition-transform hover:scale-102"
+                className="bg-brand-forest text-[#FAF7F2] hover:bg-brand-forest/90 px-4.5 py-2.5 rounded-lg text-[9px] font-bold font-mono tracking-wider uppercase inline-flex items-center gap-1 transition-transform hover:scale-102"
               >
-                Resume <ArrowUpRight size={12} />
+                Intake.PDF <ArrowUpRight size={11} />
               </a>
             </Magnet>
           </div>
 
-          {/* Mobile Actions */}
+          {/* Mobile hamburger */}
           <div className="flex items-center gap-2 md:hidden">
             <button 
               onClick={toggleTheme}
-              className="w-8 h-8 rounded-full bg-bg-primary text-text-secondary border border-border-primary flex items-center justify-center hover:bg-bg-secondary transition-colors cursor-pointer"
+              className="w-8 h-8 rounded-lg bg-bg-primary text-text-secondary border border-border-primary flex items-center justify-center hover:bg-bg-secondary transition-colors cursor-pointer"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? <Sun size={13} /> : <Moon size={13} />}
@@ -179,7 +178,7 @@ export default function Navbar({ activeSection }) {
             
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="w-8 h-8 rounded-full bg-bg-primary text-text-secondary border border-border-primary flex items-center justify-center hover:bg-bg-secondary transition-colors cursor-pointer"
+              className="w-8 h-8 rounded-lg bg-bg-primary text-text-secondary border border-border-primary flex items-center justify-center hover:bg-bg-secondary transition-colors cursor-pointer"
               aria-label="Toggle navigation menu"
             >
               {isOpen ? <X size={14} /> : <Menu size={14} />}
@@ -194,7 +193,7 @@ export default function Navbar({ activeSection }) {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden mt-4 overflow-hidden rounded-2xl bg-bg-secondary/95 border border-border-primary/50"
+              className="md:hidden mt-4 overflow-hidden rounded-xl bg-bg-secondary/95 border border-border-primary/50"
             >
               <div className="px-4 py-6 flex flex-col gap-4 font-mono text-left">
                 {navLinks.map((link) => {
@@ -206,8 +205,8 @@ export default function Navbar({ activeSection }) {
                       onClick={(e) => handleNavClick(e, link.id)}
                       className={`text-xs font-bold uppercase tracking-wider py-1.5 transition-colors ${
                         isActive 
-                          ? 'text-brand-blue' 
-                          : 'text-text-secondary hover:text-brand-blue'
+                          ? 'text-brand-forest font-extrabold' 
+                          : 'text-text-secondary hover:text-brand-forest'
                       }`}
                     >
                       {link.label}
@@ -215,14 +214,14 @@ export default function Navbar({ activeSection }) {
                   );
                 })}
                 <div className="pt-4 border-t border-border-primary/50 flex items-center justify-between">
-                  <span className="text-[9px] text-text-muted">DIRECT INTAKE</span>
+                  <span className="text-[9px] text-text-muted">Direct contact:</span>
                   <a 
                     href={personalInfo.resumeUrl}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 bg-brand-blue text-white px-4 py-2 rounded-full text-[10px] font-bold"
+                    className="inline-flex items-center gap-1 bg-brand-forest text-[#FAF7F2] px-4 py-2 rounded-lg text-[9px] font-bold"
                   >
-                    Resume <ArrowUpRight size={11} />
+                    Get Resume <ArrowUpRight size={11} />
                   </a>
                 </div>
               </div>
