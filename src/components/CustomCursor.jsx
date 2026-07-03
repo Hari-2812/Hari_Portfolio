@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export default function CustomCursor() {
@@ -8,17 +8,14 @@ export default function CustomCursor() {
   const [ripples, setRipples] = useState([]);
   const [isTouchDevice, setIsTouchDevice] = useState(true);
 
-  // Mouse position values
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // Spring settings for smooth lag
-  const springConfig = { damping: 30, stiffness: 300, mass: 0.4 };
+  const springConfig = { damping: 28, stiffness: 350, mass: 0.45 };
   const ringX = useSpring(mouseX, springConfig);
   const ringY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    // Detect touch device
     const checkTouch = () => {
       const touchSupport = 
         'ontouchstart' in window || 
@@ -36,8 +33,31 @@ export default function CustomCursor() {
     if (isTouchDevice) return;
 
     const handleMouseMove = (e) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
+      // Find magnetic attraction elements
+      const magneticTargets = document.querySelectorAll('.magnetic-attract');
+      let targetX = e.clientX;
+      let targetY = e.clientY;
+      let isAttracted = false;
+
+      magneticTargets.forEach((target) => {
+        const rect = target.getBoundingClientRect();
+        const center = {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2,
+        };
+        const distance = Math.hypot(e.clientX - center.x, e.clientY - center.y);
+
+        // Pull cursor closer if distance is less than 50px
+        if (distance < 50) {
+          targetX = center.x + (e.clientX - center.x) * 0.35;
+          targetY = center.y + (e.clientY - center.y) * 0.35;
+          isAttracted = true;
+        }
+      });
+
+      mouseX.set(targetX);
+      mouseY.set(targetY);
+      
       if (!isVisible) setIsVisible(true);
     };
 
@@ -53,8 +73,8 @@ export default function CustomCursor() {
       const target = e.target;
       if (!target) return;
 
-      const terminalEl = target.closest('.terminal-hover');
-      const spotlightEl = target.closest('.project-spotlight-hover');
+      const consoleEl = target.closest('.console-hover');
+      const spotlightEl = target.closest('.project-window-spotlight');
       const isInteractive = 
         target.tagName === 'A' || 
         target.tagName === 'BUTTON' || 
@@ -65,12 +85,12 @@ export default function CustomCursor() {
         target.closest('.interactive-hover') ||
         window.getComputedStyle(target).cursor === 'pointer';
 
-      if (terminalEl) {
+      if (consoleEl) {
         setHoverState('terminal');
-        setHoverText(terminalEl.getAttribute('data-cursor-text') || 'exec_');
+        setHoverText(consoleEl.getAttribute('data-cursor-text') || 'src_');
       } else if (spotlightEl) {
         setHoverState('spotlight');
-        setHoverText(spotlightEl.getAttribute('data-cursor-text') || 'VIEW SYSTEM');
+        setHoverText(spotlightEl.getAttribute('data-cursor-text') || 'LAUNCH_LAB');
       } else if (isInteractive) {
         setHoverState('interactive');
         setHoverText('');
@@ -89,7 +109,7 @@ export default function CustomCursor() {
       setRipples((prev) => [...prev, newRipple]);
       setTimeout(() => {
         setRipples((prev) => prev.filter((r) => r.id !== newRipple.id));
-      }, 600);
+      }, 500);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -112,36 +132,25 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Click Ripples */}
+      {/* Click ripples */}
       {ripples.map((ripple) => (
         <motion.div
           key={ripple.id}
-          className="fixed w-8 h-8 rounded-full border-2 border-accent-blue pointer-events-none z-9999"
-          initial={{ x: ripple.x - 16, y: ripple.y - 16, scale: 0.1, opacity: 0.8 }}
-          animate={{ scale: 2, opacity: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="fixed w-6 h-6 rounded-full border border-brand-blue pointer-events-none z-9999"
+          initial={{ x: ripple.x - 12, y: ripple.y - 12, scale: 0.2, opacity: 0.8 }}
+          animate={{ scale: 2.2, opacity: 0 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
         />
       ))}
 
-      {/* Center Dot */}
-      <motion.div
-        className="fixed top-0 left-0 w-1.5 h-1.5 bg-text-primary rounded-full pointer-events-none z-9999"
-        style={{
-          x: mouseX,
-          y: mouseY,
-          translateX: '-50%',
-          translateY: '-50%'
-        }}
-      />
-
-      {/* Dynamic Outer Indicator */}
+      {/* Trailing Ring */}
       <motion.div
         className="fixed top-0 left-0 rounded-full border border-text-primary pointer-events-none z-9998 flex items-center justify-center overflow-hidden"
         animate={{
-          width: hoverState === 'interactive' ? 36 : hoverState === 'terminal' ? 70 : hoverState === 'spotlight' ? 90 : 20,
-          height: hoverState === 'interactive' ? 36 : hoverState === 'terminal' ? 24 : hoverState === 'spotlight' ? 90 : 20,
-          backgroundColor: hoverState === 'spotlight' ? 'rgba(59, 130, 246, 0.15)' : 'rgba(0, 0, 0, 0)',
-          borderColor: hoverState === 'spotlight' ? 'rgba(59, 130, 246, 0.5)' : hoverState === 'terminal' ? '#10B981' : 'var(--text-primary)',
+          width: hoverState === 'interactive' ? 32 : hoverState === 'terminal' ? 72 : hoverState === 'spotlight' ? 96 : 18,
+          height: hoverState === 'interactive' ? 32 : hoverState === 'terminal' ? 24 : hoverState === 'spotlight' ? 96 : 18,
+          backgroundColor: hoverState === 'spotlight' ? 'rgba(37, 99, 235, 0.12)' : 'rgba(0,0,0,0)',
+          borderColor: hoverState === 'spotlight' ? '#2563EB' : hoverState === 'terminal' ? '#7C3AED' : 'var(--text-primary)',
           borderRadius: hoverState === 'terminal' ? '4px' : '9999px',
         }}
         style={{
@@ -150,17 +159,25 @@ export default function CustomCursor() {
           translateX: '-50%',
           translateY: '-50%',
         }}
-        transition={{ type: "spring", stiffness: 450, damping: 28 }}
+        transition={{ type: "spring", stiffness: 480, damping: 30 }}
       >
         {hoverText && (
-          <span className={`font-mono text-[9px] select-none whitespace-nowrap tracking-wider font-bold ${
-            hoverState === 'terminal' ? 'text-accent-emerald' : 'text-accent-blue'
-          }`}>
+          <span className="font-mono text-[9px] font-bold select-none text-text-primary uppercase tracking-widest">
             {hoverText}
           </span>
         )}
       </motion.div>
+
+      {/* Precision Dot */}
+      <motion.div
+        className="fixed top-0 left-0 w-1.5 h-1.5 bg-brand-blue rounded-full pointer-events-none z-9999"
+        style={{
+          x: mouseX,
+          y: mouseY,
+          translateX: '-50%',
+          translateY: '-50%'
+        }}
+      />
     </>
   );
 }
-

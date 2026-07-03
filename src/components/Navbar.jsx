@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon, ArrowUpRight } from 'lucide-react';
+import { Menu, X, Sun, Moon, ArrowUpRight, Cpu } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import Magnet from './Magnet';
@@ -14,7 +14,6 @@ export default function Navbar({ activeSection }) {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
-  // Toggle dark/light theme
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -40,22 +39,19 @@ export default function Navbar({ activeSection }) {
     }
   };
 
-  // Scroll and progress animations/logic
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // Calculate scroll progress percentage
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (totalHeight > 0) {
         setScrollProgress((currentScrollY / totalHeight) * 100);
       }
 
-      // Smart hide/show based on direction
       if (currentScrollY > lastScrollY && currentScrollY > 150) {
-        setVisible(false); // scrolling down
+        setVisible(false);
       } else {
-        setVisible(true); // scrolling up
+        setVisible(true);
       }
       
       setLastScrollY(currentScrollY);
@@ -66,22 +62,22 @@ export default function Navbar({ activeSection }) {
   }, [lastScrollY]);
 
   const navLinks = [
-    { id: 'hero', label: 'Dashboard' },
-    { id: 'about', label: 'Identity' },
-    { id: 'skills', label: 'Ecosystem' },
-    { id: 'services', label: 'Solutions' },
-    { id: 'projects', label: 'Products' },
+    { id: 'hero', label: 'Console' },
+    { id: 'about', label: 'Profile' },
+    { id: 'skills', label: 'Architecture' },
+    { id: 'services', label: 'Services' },
+    { id: 'projects', label: 'Lab' },
     { id: 'timeline', label: 'Evolution' },
-    { id: 'contact', label: 'Collab' }
+    { id: 'contact', label: 'Console_Intake' }
   ];
 
   const handleNavClick = (e, id) => {
-    if (!isHomePage) return; // Allow default Link navigation if not on Home Page
+    if (!isHomePage) return;
     e.preventDefault();
     const el = document.getElementById(id);
     if (el) {
       setIsOpen(false);
-      const offset = 90; // height of sticky navbar
+      const offset = 90;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = el.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -100,50 +96,48 @@ export default function Navbar({ activeSection }) {
       <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }} />
 
       <header 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
-          visible ? 'translate-y-0' : '-translate-y-full'
-        } ${
-          lastScrollY > 20 
-            ? 'py-3 bg-bg-secondary/90 backdrop-blur-md border-border-primary/80 shadow-premium' 
-            : 'py-6 bg-transparent border-transparent'
+        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-6xl transition-all duration-500 rounded-full border border-border-primary/50 glass-panel px-6 py-3.5 shadow-premium ${
+          visible ? 'translate-y-0 opacity-100' : '-translate-y-28 opacity-0'
         }`}
       >
-        <div className="section-container flex items-center justify-between">
+        <div className="flex items-center justify-between">
           {/* Brand Logo */}
           <Link 
             to="/" 
             onClick={(e) => handleNavClick(e, 'hero')}
-            className="group flex items-center gap-2.5"
+            className="flex items-center gap-2 select-none group"
           >
-            <div className="w-9 h-9 rounded-md bg-text-primary text-bg-primary flex items-center justify-center font-bold text-lg transition-transform duration-300 group-hover:scale-105">
+            <div className="w-8 h-8 rounded-full bg-brand-blue text-white flex items-center justify-center font-black text-sm transition-transform duration-300 group-hover:rotate-12">
               H
             </div>
-            <div className="flex flex-col">
-              <span className="text-sm font-bold tracking-tight text-text-primary">Hari Prasath</span>
-              <span className="text-[10px] text-text-muted font-mono -mt-1 font-medium">Software Studio</span>
+            <div className="flex flex-col text-left">
+              <span className="text-sm font-black tracking-tight text-text-primary">Hari Prasath</span>
+              <span className="text-[9px] text-text-muted font-mono font-semibold -mt-1 flex items-center gap-1">
+                <Cpu size={8} /> STUDIO.EXE
+              </span>
             </div>
           </Link>
 
-          {/* Desktop Links */}
-          <nav className="hidden md:flex items-center gap-6 font-mono text-[11px] bg-bg-primary/50 py-1.5 px-4 rounded-full border border-border-primary/50">
-            {navLinks.map((link, idx) => {
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-6 font-mono text-[11px]">
+            {navLinks.map((link) => {
               const isActive = activeSection === link.id && isHomePage;
               return (
                 <a
                   key={link.id}
                   href={isHomePage ? `#${link.id}` : `/#${link.id}`}
                   onClick={(e) => handleNavClick(e, link.id)}
-                  className={`relative px-2 py-1 transition-colors duration-300 font-semibold uppercase tracking-wider ${
+                  className={`relative py-1 transition-colors duration-300 font-bold uppercase tracking-wider ${
                     isActive 
-                      ? 'text-accent-blue' 
-                      : 'text-text-secondary hover:text-accent-blue'
+                      ? 'text-brand-blue font-extrabold' 
+                      : 'text-text-secondary hover:text-brand-blue'
                   }`}
                 >
                   {link.label}
                   {isActive && (
                     <motion.span 
                       layoutId="activeDot"
-                      className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent-blue"
+                      className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-brand-blue"
                     />
                   )}
                 </a>
@@ -153,58 +147,56 @@ export default function Navbar({ activeSection }) {
 
           {/* Right Side Actions */}
           <div className="hidden md:flex items-center gap-3">
-            {/* Theme Toggle */}
             <button 
               onClick={toggleTheme}
-              className="w-9 h-9 rounded-md bg-bg-secondary text-text-secondary border border-border-primary flex items-center justify-center hover:bg-bg-primary transition-colors cursor-pointer"
+              className="w-8 h-8 rounded-full bg-bg-primary text-text-secondary border border-border-primary/80 flex items-center justify-center hover:bg-bg-secondary transition-colors cursor-pointer"
               aria-label="Toggle theme"
             >
-              {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
+              {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
             </button>
 
-            {/* Resume button */}
             <Magnet>
               <a 
                 href={personalInfo.resumeUrl} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center gap-1 bg-text-primary text-bg-primary hover:opacity-90 px-4 py-2 rounded-md text-xs font-bold font-mono tracking-wider uppercase transition-opacity"
+                className="bg-brand-blue hover:bg-brand-blue/95 text-white px-4 py-2 rounded-full text-[10px] font-bold font-mono tracking-wider uppercase inline-flex items-center gap-1 transition-transform hover:scale-102"
               >
-                Resume <ArrowUpRight size={13} />
+                Resume <ArrowUpRight size={12} />
               </a>
             </Magnet>
           </div>
 
-          {/* Mobile Hamburger Toggle & Actions */}
+          {/* Mobile Actions */}
           <div className="flex items-center gap-2 md:hidden">
             <button 
               onClick={toggleTheme}
-              className="w-9 h-9 rounded-md bg-bg-secondary text-text-secondary border border-border-primary flex items-center justify-center hover:bg-bg-primary transition-colors cursor-pointer"
+              className="w-8 h-8 rounded-full bg-bg-primary text-text-secondary border border-border-primary flex items-center justify-center hover:bg-bg-secondary transition-colors cursor-pointer"
               aria-label="Toggle theme"
             >
-              {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+              {theme === 'dark' ? <Sun size={13} /> : <Moon size={13} />}
             </button>
             
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="w-9 h-9 rounded-md bg-bg-secondary text-text-secondary border border-border-primary flex items-center justify-center hover:bg-bg-primary transition-colors cursor-pointer"
+              className="w-8 h-8 rounded-full bg-bg-primary text-text-secondary border border-border-primary flex items-center justify-center hover:bg-bg-secondary transition-colors cursor-pointer"
               aria-label="Toggle navigation menu"
             >
-              {isOpen ? <X size={16} /> : <Menu size={16} />}
+              {isOpen ? <X size={14} /> : <Menu size={14} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Dropdown Drawer */}
+        {/* Mobile Drawer */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-bg-secondary border-b border-border-primary overflow-hidden"
+              className="md:hidden mt-4 overflow-hidden rounded-2xl bg-bg-secondary/95 border border-border-primary/50"
             >
-              <div className="px-6 py-6 flex flex-col gap-4 font-mono">
+              <div className="px-4 py-6 flex flex-col gap-4 font-mono text-left">
                 {navLinks.map((link) => {
                   const isActive = activeSection === link.id && isHomePage;
                   return (
@@ -214,23 +206,23 @@ export default function Navbar({ activeSection }) {
                       onClick={(e) => handleNavClick(e, link.id)}
                       className={`text-xs font-bold uppercase tracking-wider py-1.5 transition-colors ${
                         isActive 
-                          ? 'text-accent-blue' 
-                          : 'text-text-secondary hover:text-accent-blue'
+                          ? 'text-brand-blue' 
+                          : 'text-text-secondary hover:text-brand-blue'
                       }`}
                     >
                       {link.label}
                     </a>
                   );
                 })}
-                <div className="pt-4 border-t border-border-primary flex items-center justify-between">
-                  <span className="text-[10px] text-text-muted">Direct contact:</span>
+                <div className="pt-4 border-t border-border-primary/50 flex items-center justify-between">
+                  <span className="text-[9px] text-text-muted">DIRECT INTAKE</span>
                   <a 
                     href={personalInfo.resumeUrl}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 bg-text-primary text-bg-primary px-4 py-2 rounded-md text-xs font-bold"
+                    className="inline-flex items-center gap-1 bg-brand-blue text-white px-4 py-2 rounded-full text-[10px] font-bold"
                   >
-                    Resume <ArrowUpRight size={13} />
+                    Resume <ArrowUpRight size={11} />
                   </a>
                 </div>
               </div>

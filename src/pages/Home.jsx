@@ -5,7 +5,7 @@ import {
   ArrowRight, Mail, MapPin, Download, ExternalLink,
   Code, Server, Layers, Shield, Clock,
   CheckCircle, Send, ChevronRight, GraduationCap, Briefcase,
-  Award, Globe, Database, Palette, Box, Sparkles, AlertCircle, Cpu, Play
+  Award, Globe, Database, Palette, Box, Sparkles, Cpu, Play, Terminal, HelpCircle, HardDrive, RefreshCw
 } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import confetti from 'canvas-confetti';
@@ -29,6 +29,10 @@ export default function Home({ setActiveSection }) {
   const [activeStageIdx, setActiveStageIdx] = useState(4);
   const [formStatus, setFormStatus] = useState(null);
 
+  // Custom Dashboard State variables for Hero
+  const [activeHeroTab, setActiveHeroTab] = useState('status');
+  const [dependencyStatus, setDependencyStatus] = useState('RESOLVED');
+
   const {
     register,
     handleSubmit,
@@ -36,7 +40,6 @@ export default function Home({ setActiveSection }) {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  // Scrollspy active sections
   useEffect(() => {
     const observers = [];
     sectionIds.forEach((id) => {
@@ -62,10 +65,10 @@ export default function Home({ setActiveSection }) {
       setFormStatus('success');
       reset();
       confetti({
-        particleCount: 120,
-        spread: 80,
-        origin: { y: 0.8 },
-        colors: ['#3B82F6', '#10B981', '#F97316', '#8B5CF6'],
+        particleCount: 150,
+        spread: 85,
+        origin: { y: 0.85 },
+        colors: ['#2563EB', '#7C3AED', '#059669', '#EA580C'],
       });
       setTimeout(() => setFormStatus(null), 5000);
     } catch (e) {
@@ -77,94 +80,181 @@ export default function Home({ setActiveSection }) {
   return (
     <>
       <Helmet>
-        <title>Hari Prasath K | Product Engineer & Full-Stack Developer</title>
+        <title>Hari Prasath K | Premium Developer Studio & Product Engineer</title>
         <meta name="description" content="Portfolio of Hari Prasath K, a professional Freelance MERN Stack Developer building custom CRMs, LMS platforms, and Google Workspace automations." />
-        <meta property="og:title" content="Hari Prasath K | Product Engineer & Full-Stack Developer" />
-        <meta property="og:description" content="Portfolio of Hari Prasath K, a professional Freelance MERN Stack Developer building custom CRMs, LMS platforms, and Google Workspace automations." />
+        <meta property="og:title" content="Hari Prasath K | Premium Developer Studio & Product Engineer" />
       </Helmet>
 
-      {/* 1. HERO SECTION: DIGITAL WORKSPACE */}
-      <section id="hero" className="min-h-screen pt-28 pb-16 flex items-center bg-bg-primary relative overflow-hidden">
+      {/* 1. HERO SECTION: DEVELOPER COMMAND CENTER */}
+      <section id="hero" className="min-h-screen pt-28 pb-16 flex items-center bg-bg-primary relative overflow-hidden grid-bg-lines">
+        {/* Floating gradient lights */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-blue/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-purple/5 rounded-full blur-3xl pointer-events-none" />
+
         <div className="section-container w-full z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Brand Introduction */}
-          <div className="lg:col-span-7 space-y-6 text-left">
+          {/* Brand Presentation & Pitch */}
+          <div className="lg:col-span-6 space-y-6 text-left">
             <ScrollReveal delay={0.05}>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-bg-secondary border border-border-primary text-xs font-mono font-semibold text-text-primary">
-                <span className="h-2 w-2 rounded-full bg-accent-emerald animate-pulse" />
-                AVAILABILITY // OPEN_FOR_CONTRACTS
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-xs font-mono font-bold text-brand-blue">
+                <span className="h-2 w-2 rounded-full bg-brand-emerald animate-ping" />
+                SYSTEM_STATUS // ONLINE_FOR_HIRE
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.1}>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black font-heading text-text-primary tracking-tight leading-tight">
-                Engineering <br />
-                <span className="italic font-serif text-accent-blue">Digital Products</span> <br />
-                with MERN Stack.
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-text-primary tracking-tight leading-tight">
+                Architecting <br />
+                <span className="text-brand-blue">Enterprise Web</span> <br />
+                Systems & Tools.
               </h1>
             </ScrollReveal>
 
             <ScrollReveal delay={0.15}>
-              <p className="text-sm font-mono text-text-secondary leading-relaxed max-w-xl">
-                I am Hari Prasath K, a product-focused software engineer. I design clean database schemas, secure role-based API backends, and modular frontends to resolve real-world business bottlenecks.
+              <p className="text-sm font-mono text-text-secondary leading-relaxed max-w-lg">
+                I am Hari Prasath K, a full-stack product engineer. I partner with scaling startups and software studios to convert business goals into custom CRM panels, LMS applications, and operations workflows.
               </p>
             </ScrollReveal>
 
-            {/* Quick stats ecosystem */}
+            {/* Availability Indicator Widget */}
             <ScrollReveal delay={0.2}>
-              <div className="grid grid-cols-3 gap-4 py-4 max-w-lg border-t border-b border-border-primary/80 font-mono">
-                <div>
-                  <p className="text-xs text-text-muted">DELIVERED</p>
-                  <p className="text-xl font-bold text-text-primary">5+ SaaS Apps</p>
+              <div className="p-4 bg-bg-secondary/60 backdrop-blur border border-border-primary rounded-xl flex items-center justify-between gap-4 max-w-md">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-brand-emerald/10 text-brand-emerald flex items-center justify-center">
+                    <CheckCircle size={18} />
+                  </div>
+                  <div className="text-left font-mono">
+                    <h3 className="text-xs font-bold text-text-primary">Direct Intake Console</h3>
+                    <p className="text-[10px] text-text-muted">Tickets processed daily</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-xs text-text-muted">ALGORITHMS</p>
-                  <p className="text-xl font-bold text-text-primary">300+ DSA</p>
-                </div>
-                <div>
-                  <p className="text-xs text-text-muted">CGPA</p>
-                  <p className="text-xl font-bold text-text-primary">8.05</p>
-                </div>
+                <span className="text-[10px] font-mono font-bold bg-brand-emerald/10 text-brand-emerald px-2 py-1 rounded">
+                  EST_RESPONSE_12H
+                </span>
               </div>
             </ScrollReveal>
 
+            {/* Call to Actions */}
             <ScrollReveal delay={0.25} className="flex flex-wrap gap-4">
               <Magnet>
-                <a href="#projects" className="bg-text-primary text-bg-primary px-5 py-3 rounded-md text-xs font-bold font-mono uppercase tracking-wider inline-flex items-center gap-2 transition-opacity hover:opacity-90">
-                  Explore Products <ArrowRight size={14} />
+                <a href="#projects" className="magnetic-attract bg-brand-blue hover:bg-brand-blue/95 text-white px-6 py-3 rounded-full text-xs font-bold font-mono uppercase tracking-wider inline-flex items-center gap-2 shadow-premium transition-transform hover:scale-102">
+                  Launch Lab Console <ArrowRight size={14} />
                 </a>
               </Magnet>
               <Magnet>
-                <a href="#contact" className="border border-border-primary hover:bg-bg-secondary text-text-primary px-5 py-3 rounded-md text-xs font-bold font-mono tracking-wider uppercase transition-colors">
-                  Consultation
+                <a href="#contact" className="magnetic-attract border border-border-primary hover:bg-bg-secondary text-text-primary px-6 py-3 rounded-full text-xs font-bold font-mono tracking-wider uppercase transition-colors">
+                  Initialize ticket
                 </a>
               </Magnet>
             </ScrollReveal>
           </div>
 
-          {/* Software Dashboard Console */}
-          <div className="lg:col-span-5 w-full">
-            <ScrollReveal direction="right" delay={0.2}>
-              <div className="terminal-window terminal-hover text-left" data-cursor-text="system_">
-                <div className="terminal-header">
-                  <span className="terminal-dot terminal-dot-red" />
-                  <span className="terminal-dot terminal-dot-yellow" />
-                  <span className="terminal-dot terminal-dot-green" />
-                  <span className="text-[10px] text-text-muted font-mono ml-4">hari_prasath_studio.sh</span>
+          {/* Interactive Developer Panel Dashboard */}
+          <div className="lg:col-span-6 w-full">
+            <ScrollReveal direction="left" delay={0.2}>
+              <div className="developer-console-frame text-left console-hover" data-cursor-text="exec_">
+                <div className="developer-console-header">
+                  <div className="console-actions-dots">
+                    <span className="console-dot console-dot-close" />
+                    <span className="console-dot console-dot-minimize" />
+                    <span className="console-dot console-dot-maximize" />
+                  </div>
+                  <span className="text-[10px] text-text-muted font-mono">hari_prasath_terminal.exe</span>
+                  <div className="w-2.5 h-2.5 rounded-full bg-brand-blue/20" />
                 </div>
-                <div className="terminal-body font-mono space-y-4">
-                  <div className="space-y-1">
-                    <p className="text-text-muted">// Current Stack Architecture</p>
-                    <p className="text-accent-blue">const developer = {`{`}</p>
-                    <p className="pl-4 text-text-secondary">name: 'Hari Prasath K',</p>
-                    <p className="pl-4 text-text-secondary">focus: ['LMS', 'CRM', 'API_Design', 'Automations'],</p>
-                    <p className="pl-4 text-text-secondary">primary: 'MongoDB, Express, React, Node.js',</p>
-                    <p className="pl-4 text-text-secondary">metrics: {`{ DSA: 300, Projects: 5, CGPA: 8.05 }`}</p>
-                    <p className="text-accent-blue">{`};`}</p>
-                  </div>
-                  <div className="border-t border-border-primary/30 pt-3">
-                    <p className="text-accent-emerald">visitor@hari_studio:~$ ./run_lighthouse.sh</p>
-                    <p className="text-text-secondary">Lighthouse Audits: Performance [99%] | SEO [100%]</p>
-                  </div>
+                
+                {/* Console tabs */}
+                <div className="flex bg-[#161b22] border-b border-[#21262d] font-mono text-[10px] text-text-muted">
+                  <button 
+                    onClick={() => setActiveHeroTab('status')}
+                    className={`px-4 py-2 border-r border-[#21262d] transition-colors ${
+                      activeHeroTab === 'status' ? 'bg-[#0d1117] text-brand-blue font-bold' : 'hover:bg-[#0d1117]'
+                    }`}
+                  >
+                    STATUS_LOGS
+                  </button>
+                  <button 
+                    onClick={() => setActiveHeroTab('dependencies')}
+                    className={`px-4 py-2 border-r border-[#21262d] transition-colors ${
+                      activeHeroTab === 'dependencies' ? 'bg-[#0d1117] text-brand-purple font-bold' : 'hover:bg-[#0d1117]'
+                    }`}
+                  >
+                    DEPENDENCY_TREE
+                  </button>
+                  <button 
+                    onClick={() => setActiveHeroTab('git')}
+                    className={`px-4 py-2 transition-colors ${
+                      activeHeroTab === 'git' ? 'bg-[#0d1117] text-brand-orange font-bold' : 'hover:bg-[#0d1117]'
+                    }`}
+                  >
+                    GIT_STATS
+                  </button>
+                </div>
+
+                <div className="developer-console-body min-h-[220px]">
+                  <AnimatePresence mode="wait">
+                    {activeHeroTab === 'status' && (
+                      <motion.div
+                        key="status"
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 5 }}
+                        className="space-y-3 font-mono text-xs text-[#c9d1d9]"
+                      >
+                        <p className="text-text-muted">// System check executed successfully</p>
+                        <p className="flex items-center gap-2"><span className="text-brand-emerald">✓</span> Engine: MERN stack framework active</p>
+                        <p className="flex items-center gap-2"><span className="text-brand-emerald">✓</span> Performance: 99% Lighthouse index verified</p>
+                        <p className="flex items-center gap-2"><span className="text-brand-emerald">✓</span> Databases: MongoDB transaction layers connected</p>
+                        <p className="flex items-center gap-2"><span className="text-brand-emerald">✓</span> Algorithms: 300+ DSA modules compiled</p>
+                      </motion.div>
+                    )}
+
+                    {activeHeroTab === 'dependencies' && (
+                      <motion.div
+                        key="dependencies"
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 5 }}
+                        className="space-y-2 font-mono text-xs text-[#c9d1d9]"
+                      >
+                        <p className="text-text-muted">// App dependency tree compiler</p>
+                        <div className="p-3 bg-[#161b22] border border-[#21262d] rounded flex items-center justify-between">
+                          <span>Razorpay Checkout Integration</span>
+                          <span className="text-brand-emerald font-bold">{dependencyStatus}</span>
+                        </div>
+                        <div className="p-3 bg-[#161b22] border border-[#21262d] rounded flex items-center justify-between">
+                          <span>Google Sheets Automation (GAS)</span>
+                          <span className="text-brand-emerald font-bold">RESOLVED</span>
+                        </div>
+                        <div className="p-3 bg-[#161b22] border border-[#21262d] rounded flex items-center justify-between">
+                          <span>Meta WhatsApp Cloud integration</span>
+                          <span className="text-brand-emerald font-bold">RESOLVED</span>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {activeHeroTab === 'git' && (
+                      <motion.div
+                        key="git"
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 5 }}
+                        className="space-y-3 font-mono text-xs text-[#c9d1d9]"
+                      >
+                        <p className="text-text-muted">// Git repository index state</p>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="p-3 bg-[#161b22] border border-[#21262d] rounded">
+                            <span className="text-[10px] text-text-muted block">BRANCH_NAME</span>
+                            <span className="font-bold text-brand-orange">main</span>
+                          </div>
+                          <div className="p-3 bg-[#161b22] border border-[#21262d] rounded">
+                            <span className="text-[10px] text-text-muted block">TOTAL_COMMIT_COUNT</span>
+                            <span className="font-bold text-brand-blue">142+ commits</span>
+                          </div>
+                        </div>
+                        <p className="text-text-muted text-[10px]">hash // be54dae0569bc7438de37cce4</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
             </ScrollReveal>
@@ -172,49 +262,47 @@ export default function Home({ setActiveSection }) {
         </div>
       </section>
 
-      {/* 2. ABOUT SECTION: MAGAZINE STORYLAYOUT */}
-      <section id="about" className="py-24 bg-bg-secondary border-t border-border-primary">
+      {/* 2. PROFILE SECTION: STORYTELLING SYSTEM SUMMARY */}
+      <section id="about" className="py-24 bg-bg-secondary border-t border-border-primary grid-bg-dots">
         <div className="section-container text-left">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* Story Philosophy */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Header Identity details */}
             <div className="lg:col-span-7 space-y-6">
               <ScrollReveal>
-                <span className="text-[10px] font-mono text-accent-blue font-bold uppercase tracking-wider">
-                  01 // Engineering Philosophy
+                <span className="text-[10px] font-mono text-brand-blue font-bold uppercase tracking-wider">
+                  01 // Developer Profile
                 </span>
-                <h2 className="text-3xl md:text-5xl font-black font-heading text-text-primary tracking-tight leading-tight mt-2">
-                  Building software to resolve tangible operational bottlenecks.
+                <h2 className="text-3xl md:text-5xl font-black text-text-primary tracking-tight leading-tight mt-2">
+                  Solving complex business challenges through pragmatic engineering.
                 </h2>
               </ScrollReveal>
 
               <ScrollReveal delay={0.1}>
                 <p className="text-sm text-text-secondary leading-relaxed">
-                  I don't just write syntax. I approach software development as a product engineer. 
-                  My academic credentials (B.E. in Computer Science) provide me with solid foundations in algorithmic space-time complexity, index optimizations, and database relationships. 
-                  I pair this academic rigor with professional freelance contracts, helping startups and service businesses launch robust digital products.
+                  I design software to resolve real-world operations issues. With a Bachelor of Engineering in Computer Science and Engineering, I combine structured computer systems foundations—like database normalization, search algorithms, and access middleware—with professional MERN stack freelancing.
                 </p>
               </ScrollReveal>
 
               <ScrollReveal delay={0.15}>
-                <blockquote className="border-l-4 border-accent-blue pl-4 py-2 italic font-heading text-text-primary text-lg">
-                  "The best code is not the most complex, but the most readable system that addresses the operational challenge with zero overhead."
-                </blockquote>
+                <div className="p-5 bg-bg-primary border border-border-primary rounded-xl italic font-serif text-text-primary text-base">
+                  "I build with a simple rule: create clean database configurations, secure controller routing frameworks, and modular, fast UI panels that work seamlessly."
+                </div>
               </ScrollReveal>
             </div>
 
-            {/* Layout highlights */}
-            <div className="lg:col-span-5 space-y-6">
-              <ScrollReveal direction="right" className="p-6 bg-bg-primary border border-border-primary rounded-lg space-y-4">
-                <h3 className="font-mono text-xs font-bold text-text-primary uppercase tracking-wider">How I Think</h3>
+            {/* Action Mindset Blocks */}
+            <div className="lg:col-span-5 space-y-4">
+              <ScrollReveal direction="left" className="p-6 bg-bg-primary border border-border-primary rounded-xl space-y-3 shadow-card">
+                <h3 className="font-mono text-xs font-bold text-brand-purple uppercase tracking-wider">// System Security Mindset</h3>
                 <p className="text-xs text-text-secondary leading-relaxed">
-                  I design databases schema-first, verify payment lifecycles out-of-band using webhook verification keys, and write secure, middleware-driven JWT route structures to safeguard systems.
+                  I write secure JWT-based route access controls with hierarchical Role-Based Access Control (RBAC), preventing unauthorized access points.
                 </p>
               </ScrollReveal>
 
-              <ScrollReveal direction="right" delay={0.1} className="p-6 bg-bg-primary border border-border-primary rounded-lg space-y-4">
-                <h3 className="font-mono text-xs font-bold text-text-primary uppercase tracking-wider">Why Work With Me</h3>
+              <ScrollReveal direction="left" delay={0.1} className="p-6 bg-bg-primary border border-border-primary rounded-xl space-y-3 shadow-card">
+                <h3 className="font-mono text-xs font-bold text-brand-orange uppercase tracking-wider">// Optimized Databases</h3>
                 <p className="text-xs text-text-secondary leading-relaxed">
-                  Clients replace spreadsheet clutter with centralized, automated administrative pipelines. By automating manual certificate generations and course signups, manual administrative workload drops by up to 95%.
+                  I optimize MongoDB systems by indexing search paths, writing performant aggregate queries, and using schema checks to verify parameters.
                 </p>
               </ScrollReveal>
             </div>
@@ -222,45 +310,45 @@ export default function Home({ setActiveSection }) {
         </div>
       </section>
 
-      {/* 3. SKILLS SECTION: DEVELOPER ECOSYSTEM MAP */}
-      <section id="skills" className="py-24 bg-bg-primary border-t border-border-primary">
+      {/* 3. SKILLS SECTION: TECHNOLOGY ARCHITECTURE MAP */}
+      <section id="skills" className="py-24 bg-bg-primary border-t border-border-primary grid-bg-lines">
         <div className="section-container text-left">
           <ScrollReveal>
-            <span className="text-[10px] font-mono text-accent-blue font-bold uppercase tracking-wider">
-              02 // Technical Infrastructure Map
+            <span className="text-[10px] font-mono text-brand-blue font-bold uppercase tracking-wider">
+              02 // Infrastructure Ecosystem
             </span>
-            <h2 className="text-3xl md:text-5xl font-black font-heading text-text-primary tracking-tight leading-tight mt-2 mb-12">
-              System Architecture Ecosystem
+            <h2 className="text-3xl md:text-5xl font-black text-text-primary tracking-tight leading-tight mt-2 mb-12">
+              Technology Architecture Map
             </h2>
           </ScrollReveal>
 
-          {/* Map Layout */}
+          {/* Map layout grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Left Layers Selector */}
+            {/* Layers selector */}
             <div className="lg:col-span-4 space-y-2 font-mono">
               {[
-                { key: 'frontend', name: '01 / UI View Layer' },
-                { key: 'backend', name: '02 / Logic Controller Layer' },
-                { key: 'database', name: '03 / Data Modeling Layer' },
-                { key: 'integrations', name: '04 / Integration Matrix' },
-                { key: 'tools', name: '05 / Environment & DevOps' }
-              ].map((category) => (
+                { id: 'frontend', name: 'UI / Presentation Layer' },
+                { id: 'backend', name: 'Logic Controller Layer' },
+                { id: 'database', name: 'Database Model Layer' },
+                { id: 'integrations', name: 'Integration Matrix Layer' },
+                { id: 'tools', name: 'Environment / DevOps Layer' }
+              ].map((layer) => (
                 <button
-                  key={category.key}
-                  onClick={() => setActiveSkillCategory(category.key)}
-                  className={`w-full text-left px-5 py-4 rounded-md border text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex justify-between items-center ${
-                    activeSkillCategory === category.key
-                      ? 'bg-bg-secondary border-text-primary text-text-primary border-l-4 border-l-accent-blue shadow-premium'
+                  key={layer.id}
+                  onClick={() => setActiveSkillCategory(layer.id)}
+                  className={`w-full text-left px-5 py-4 rounded-xl border text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex justify-between items-center ${
+                    activeSkillCategory === layer.id
+                      ? 'bg-bg-secondary border-brand-blue text-brand-blue border-l-4 border-l-brand-blue shadow-premium font-extrabold'
                       : 'bg-transparent border-border-primary/50 text-text-secondary hover:border-border-primary'
                   }`}
                 >
-                  <span>{category.name}</span>
-                  {activeSkillCategory === category.key && <Play size={10} className="text-accent-blue fill-accent-blue" />}
+                  <span>{layer.name}</span>
+                  {activeSkillCategory === layer.id && <Play size={10} className="text-brand-blue fill-brand-blue shrink-0" />}
                 </button>
               ))}
             </div>
 
-            {/* Right Architecture Map Details */}
+            {/* Architecture Node Display */}
             <div className="lg:col-span-8">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -269,26 +357,26 @@ export default function Home({ setActiveSection }) {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.25 }}
-                  className="p-8 bg-bg-secondary border border-border-primary rounded-xl shadow-premium space-y-6"
+                  className="p-8 bg-bg-secondary border border-border-primary rounded-2xl shadow-premium space-y-6"
                 >
-                  <div className="flex justify-between items-center border-b border-border-primary/50 pb-4">
-                    <span className="font-mono text-xs uppercase tracking-wider text-text-muted">ACTIVE COMPONENT DIRECTORY</span>
-                    <span className="text-[10px] font-mono bg-accent-blue/10 text-accent-blue px-2.5 py-1 rounded font-bold">
-                      {activeSkillCategory.toUpperCase()} Layer
-                    </span>
+                  <div className="flex justify-between items-center border-b border-border-primary pb-4 font-mono text-[10px]">
+                    <span className="text-text-muted">// LAYER NODE SUMMARY</span>
+                    <span className="text-brand-blue font-bold">{activeSkillCategory.toUpperCase()} COMPACT LIST</span>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {skills[activeSkillCategory]?.map((skill) => (
-                      <div key={skill.name} className="p-5 bg-bg-primary border border-border-primary/70 rounded-lg space-y-3">
+                      <div key={skill.name} className="p-5 bg-bg-primary/50 border border-border-primary rounded-xl space-y-3">
                         <div className="flex justify-between items-center">
-                          <h4 className="font-bold text-sm text-text-primary font-mono">{skill.name}</h4>
-                          <span className="text-xs font-mono font-bold text-accent-blue">{skill.level}%</span>
+                          <h4 className="font-bold text-xs text-text-primary font-mono">{skill.name}</h4>
+                          <span className="text-[10px] font-mono font-bold text-brand-blue bg-brand-blue/10 px-2 py-0.5 rounded">
+                            {skill.level}%
+                          </span>
                         </div>
                         <p className="text-xs text-text-secondary leading-relaxed">{skill.description}</p>
                         <div className="flex flex-wrap gap-1">
                           {skill.related.map((rel) => (
-                            <span key={rel} className="text-[9px] font-mono font-semibold bg-bg-secondary text-text-secondary px-2 py-0.5 rounded border border-border-primary/80">
+                            <span key={rel} className="text-[9px] font-mono font-semibold bg-bg-secondary border border-border-primary text-text-secondary px-2 py-0.5 rounded">
                               {rel}
                             </span>
                           ))}
@@ -303,39 +391,39 @@ export default function Home({ setActiveSection }) {
         </div>
       </section>
 
-      {/* 4. SERVICES SECTION: SOFTWARE AGENCY STYLE */}
-      <section id="services" className="py-24 bg-bg-secondary border-t border-border-primary">
+      {/* 4. SERVICES SECTION: SOFTWARE AGENCY WORKFLOW */}
+      <section id="services" className="py-24 bg-bg-secondary border-t border-border-primary grid-bg-dots">
         <div className="section-container text-left">
           <ScrollReveal>
-            <span className="text-[10px] font-mono text-accent-blue font-bold uppercase tracking-wider">
-              03 // Scope of Offerings
+            <span className="text-[10px] font-mono text-brand-blue font-bold uppercase tracking-wider">
+              03 // Software Agency Offerings
             </span>
-            <h2 className="text-3xl md:text-5xl font-black font-heading text-text-primary tracking-tight leading-tight mt-2 mb-12">
-              Solutions Portfolio
+            <h2 className="text-3xl md:text-5xl font-black text-text-primary tracking-tight leading-tight mt-2 mb-12">
+              Services & Value Delivery
             </h2>
           </ScrollReveal>
 
-          {/* Matrix Layout */}
+          {/* Matrix Flow Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Sidebar Services Selection */}
+            {/* List selectors */}
             <div className="lg:col-span-4 space-y-2">
               {services.map((service, idx) => (
                 <button
                   key={service.id}
                   onClick={() => setActiveServiceIdx(idx)}
-                  className={`w-full text-left p-5 rounded-lg border transition-all cursor-pointer flex flex-col gap-1 font-mono ${
+                  className={`w-full text-left p-5 rounded-xl border transition-all cursor-pointer flex flex-col gap-1 font-mono ${
                     activeServiceIdx === idx
-                      ? 'bg-bg-primary border-text-primary border-l-4 border-l-accent-blue shadow-premium'
-                      : 'bg-bg-secondary border-border-primary/60 hover:border-border-primary'
+                      ? 'bg-bg-primary border-brand-blue border-l-4 border-l-brand-blue shadow-premium'
+                      : 'bg-bg-secondary border-border-primary/85 hover:border-border-primary'
                   }`}
                 >
-                  <span className="text-[10px] text-text-muted uppercase">PILLAR 0{idx + 1}</span>
+                  <span className="text-[9px] text-text-muted">SYSTEM_PILLAR 0{idx + 1}</span>
                   <h3 className="text-xs font-bold text-text-primary tracking-tight">{service.title}</h3>
                 </button>
               ))}
             </div>
 
-            {/* Detailed Problem Solution view */}
+            {/* Dynamic Value Flow Panel */}
             <div className="lg:col-span-8">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -344,52 +432,52 @@ export default function Home({ setActiveSection }) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -15 }}
                   transition={{ duration: 0.25 }}
-                  className="p-8 bg-bg-primary border border-border-primary rounded-xl space-y-6"
+                  className="p-8 bg-bg-primary border border-border-primary rounded-2xl space-y-6"
                 >
-                  <div className="flex flex-wrap justify-between items-start gap-4 pb-4 border-b border-border-primary/50">
+                  <div className="flex flex-wrap justify-between items-start gap-4 pb-4 border-b border-border-primary">
                     <div>
-                      <span className="font-mono text-[9px] text-accent-blue font-bold uppercase tracking-wider">PILLAR CAPABILITIES</span>
-                      <h3 className="font-heading font-black text-xl text-text-primary mt-1">{services[activeServiceIdx].title}</h3>
+                      <span className="font-mono text-[9px] text-brand-blue font-bold uppercase">SERVICE SPECIFICATION</span>
+                      <h3 className="font-heading font-black text-lg text-text-primary mt-0.5">{services[activeServiceIdx].title}</h3>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-mono text-xs">
-                    <div className="p-4 bg-bg-secondary border border-border-primary/80 rounded-lg space-y-2">
-                      <h4 className="font-bold text-accent-orange uppercase tracking-wider">// The Bottleneck</h4>
+                    <div className="p-4 bg-bg-secondary border border-border-primary rounded-xl space-y-2">
+                      <h4 className="font-bold text-brand-orange uppercase">// Target Problem</h4>
                       <p className="text-text-secondary leading-relaxed">{services[activeServiceIdx].shortDescription}</p>
                     </div>
 
-                    <div className="p-4 bg-bg-secondary border border-border-primary/80 rounded-lg space-y-2">
-                      <h4 className="font-bold text-accent-emerald uppercase tracking-wider">// My Solution</h4>
+                    <div className="p-4 bg-bg-secondary border border-border-primary rounded-xl space-y-2">
+                      <h4 className="font-bold text-brand-emerald uppercase">// System Outcome</h4>
                       <p className="text-text-secondary leading-relaxed">{services[activeServiceIdx].deliverables}</p>
                     </div>
                   </div>
 
-                  <div className="space-y-4">
-                    <h4 className="font-mono text-[10px] font-bold text-text-primary uppercase tracking-wider">Key Project Capabilities</h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                  <div className="space-y-3 text-xs">
+                    <h4 className="font-mono text-[10px] font-bold text-text-primary uppercase tracking-wider">Key Functional Modules</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       {services[activeServiceIdx].features.map((feat, i) => (
                         <div key={i} className="flex items-start gap-2">
-                          <CheckCircle size={13} className="text-accent-emerald shrink-0 mt-0.5" />
+                          <CheckCircle size={13} className="text-brand-emerald shrink-0 mt-0.5" />
                           <span className="text-text-secondary leading-normal">{feat}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-border-primary/50 flex flex-wrap justify-between items-center gap-4">
+                  <div className="pt-4 border-t border-border-primary flex flex-wrap justify-between items-center gap-4">
                     <div className="flex flex-wrap gap-1">
                       {services[activeServiceIdx].techUsed.map((tech) => (
-                        <span key={tech} className="text-[9px] font-mono font-bold bg-bg-secondary text-text-primary border border-border-primary px-2.5 py-0.5 rounded">
+                        <span key={tech} className="text-[9px] font-mono font-bold bg-bg-secondary border border-border-primary text-text-primary px-2.5 py-0.5 rounded">
                           {tech}
                         </span>
                       ))}
                     </div>
                     <a
                       href="#contact"
-                      className="bg-text-primary text-bg-primary px-4 py-2 rounded font-mono text-[10px] font-bold uppercase tracking-wider transition-opacity hover:opacity-90"
+                      className="bg-text-primary text-bg-primary px-4 py-2 rounded-md font-mono text-[10px] font-bold uppercase tracking-wider transition-opacity hover:opacity-90"
                     >
-                      Request Consult →
+                      Initialize Consultation →
                     </a>
                   </div>
                 </motion.div>
@@ -399,23 +487,24 @@ export default function Home({ setActiveSection }) {
         </div>
       </section>
 
-      {/* 5. PROJECTS SECTION: PRODUCT ENGINEERING SHOWCASE */}
-      <section id="projects" className="py-24 bg-bg-primary border-t border-border-primary">
+      {/* 5. PROJECTS SECTION: PRODUCT ENGINEERING LAB */}
+      <section id="projects" className="py-24 bg-bg-primary border-t border-border-primary grid-bg-lines">
         <div className="section-container text-left">
           <ScrollReveal>
-            <span className="text-[10px] font-mono text-accent-blue font-bold uppercase tracking-wider">
-              04 // Engineering Lab
+            <span className="text-[10px] font-mono text-brand-blue font-bold uppercase tracking-wider">
+              04 // Engineering Sandbox
             </span>
-            <h2 className="text-3xl md:text-5xl font-black font-heading text-text-primary tracking-tight leading-tight mt-2 mb-12">
-              Featured Case Studies
+            <h2 className="text-3xl md:text-5xl font-black text-text-primary tracking-tight leading-tight mt-2 mb-12">
+              Product Engineering Lab
             </h2>
           </ScrollReveal>
 
-          {/* Folder Directory Sidebar Layout */}
+          {/* Directory style navigation split */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Left explorer folder list */}
             <div className="lg:col-span-4 space-y-2 font-mono">
-              <div className="text-[10px] text-text-muted uppercase border-b border-border-primary/80 pb-2 mb-3">
-                PROJECT DIRECTORY
+              <div className="text-[10px] text-text-muted uppercase border-b border-border-primary pb-2 mb-3">
+                REPOSITORY_DIRECTORY
               </div>
               {projects.map((project, idx) => (
                 <button
@@ -424,33 +513,33 @@ export default function Home({ setActiveSection }) {
                     setActiveProjectIdx(idx);
                     setActiveProjectTab('overview');
                   }}
-                  className={`w-full text-left px-4 py-3.5 rounded border text-xs font-bold transition-all cursor-pointer flex justify-between items-center ${
+                  className={`w-full text-left px-4 py-3.5 rounded-xl border text-xs font-bold transition-all cursor-pointer flex justify-between items-center ${
                     activeProjectIdx === idx
-                      ? 'bg-bg-secondary border-text-primary text-text-primary border-l-4 border-l-accent-blue shadow-premium'
-                      : 'bg-transparent border-border-primary/40 text-text-secondary hover:border-border-primary'
+                      ? 'bg-bg-secondary border-brand-blue text-brand-blue border-l-4 border-l-brand-blue shadow-premium font-extrabold'
+                      : 'bg-transparent border-border-primary/45 text-text-secondary hover:border-border-primary'
                   }`}
                 >
                   <span className="truncate">{project.title}</span>
-                  <span className={`h-2 w-2 rounded-full ${project.liveUrl !== '#' ? 'bg-accent-emerald' : 'bg-accent-orange'}`} />
+                  <span className={`h-2.5 w-2.5 rounded-full ${project.liveUrl !== '#' ? 'bg-brand-emerald' : 'bg-brand-orange'}`} />
                 </button>
               ))}
             </div>
 
-            {/* Custom Project Showcase */}
+            {/* System detail console */}
             <div className="lg:col-span-8">
               {(() => {
                 const project = projects[activeProjectIdx];
                 if (!project) return null;
                 return (
-                  <ScrollReveal key={project.id} className="w-full">
-                    <div className="bg-bg-secondary border border-border-primary rounded-xl overflow-hidden shadow-premium">
-                      {/* Explorer Header */}
+                  <ScrollReveal key={project.id}>
+                    <div className="bg-bg-secondary border border-border-primary rounded-2xl overflow-hidden shadow-premium">
+                      {/* Browser Mockup bar */}
                       <div className="p-6 bg-bg-primary border-b border-border-primary flex flex-wrap justify-between items-start gap-4">
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="font-mono text-[9px] text-accent-blue font-bold uppercase">{project.client}</span>
-                            <span className="text-[8px] font-mono bg-accent-emerald/10 text-accent-emerald px-1.5 py-0.5 rounded font-bold">
-                              PRODUCTION_ACTIVE
+                            <span className="font-mono text-[9px] text-brand-blue font-bold uppercase">{project.client}</span>
+                            <span className="text-[8px] font-mono bg-brand-emerald/10 text-brand-emerald px-1.5 py-0.5 rounded font-bold">
+                              PRODUCTION_DEPLOYED
                             </span>
                           </div>
                           <h3 className="font-heading font-black text-xl lg:text-2xl text-text-primary mt-1">{project.title}</h3>
@@ -462,7 +551,7 @@ export default function Home({ setActiveSection }) {
                               href={project.github}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="border border-border-primary hover:bg-bg-secondary text-text-primary text-[10px] font-mono font-bold px-3 py-1.5 rounded inline-flex items-center gap-1.5 transition-colors"
+                              className="border border-border-primary hover:bg-bg-secondary text-text-primary text-[10px] font-mono font-bold px-3.5 py-1.5 rounded-md inline-flex items-center gap-1.5 transition-colors"
                             >
                               <FaGithub size={12} /> Source
                             </a>
@@ -472,7 +561,7 @@ export default function Home({ setActiveSection }) {
                               href={project.liveUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="bg-text-primary text-bg-primary text-[10px] font-mono font-bold px-3 py-1.5 rounded inline-flex items-center gap-1.5 transition-opacity hover:opacity-90"
+                              className="bg-text-primary text-bg-primary text-[10px] font-mono font-bold px-3.5 py-1.5 rounded-md inline-flex items-center gap-1.5 transition-opacity hover:opacity-90"
                             >
                               Launch <ExternalLink size={12} />
                             </a>
@@ -480,20 +569,20 @@ export default function Home({ setActiveSection }) {
                         </div>
                       </div>
 
-                      {/* Mini Tab selector */}
-                      <div className="flex gap-2 px-6 pt-4 border-b border-border-primary/40 font-mono text-[10px]">
+                      {/* Content panel sub tabs */}
+                      <div className="flex gap-2 px-6 pt-4 border-b border-border-primary font-mono text-[10px]">
                         {[
                           { id: 'overview', label: '01 / Specifications' },
-                          { id: 'architecture', label: '02 / System Design' },
-                          { id: 'challenges', label: '03 / engineering_log' }
+                          { id: 'architecture', label: '02 / System Modules' },
+                          { id: 'engineering', label: '03 / Engineering Log' }
                         ].map(t => (
                           <button
                             key={t.id}
                             onClick={() => setActiveProjectTab(t.id)}
                             className={`px-3 py-2 border-t-2 border-transparent transition-all cursor-pointer uppercase tracking-wider font-semibold ${
                               activeProjectTab === t.id
-                                ? 'text-accent-blue border-t-accent-blue bg-bg-primary/50'
-                                : 'text-text-secondary hover:text-accent-blue'
+                                ? 'text-brand-blue border-t-brand-blue bg-bg-primary/50 font-extrabold'
+                                : 'text-text-secondary hover:text-brand-blue'
                             }`}
                           >
                             {t.label}
@@ -501,7 +590,7 @@ export default function Home({ setActiveSection }) {
                         ))}
                       </div>
 
-                      {/* Showcase details */}
+                      {/* Details Content */}
                       <div className="p-6 space-y-6">
                         <AnimatePresence mode="wait">
                           {activeProjectTab === 'overview' && (
@@ -511,17 +600,17 @@ export default function Home({ setActiveSection }) {
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: -10 }}
                               transition={{ duration: 0.2 }}
-                              className="space-y-4"
+                              className="space-y-4 text-xs"
                             >
-                              <p className="text-xs text-text-secondary leading-relaxed">{project.description}</p>
+                              <p className="text-text-secondary leading-relaxed text-left">{project.description}</p>
                               
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
-                                <div className="p-4 bg-bg-primary rounded-lg border border-border-primary/80">
-                                  <h5 className="font-bold text-accent-orange uppercase">// Key Challenge</h5>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-left">
+                                <div className="p-4 bg-bg-primary rounded-xl border border-border-primary">
+                                  <h5 className="font-bold text-brand-orange uppercase">// Operational Bottleneck</h5>
                                   <p className="text-text-secondary leading-relaxed mt-1">{project.problem}</p>
                                 </div>
-                                <div className="p-4 bg-bg-primary rounded-lg border border-border-primary/80">
-                                  <h5 className="font-bold text-accent-emerald uppercase">// System Outcome</h5>
+                                <div className="p-4 bg-bg-primary rounded-xl border border-border-primary">
+                                  <h5 className="font-bold text-brand-emerald uppercase">// System Outcome</h5>
                                   <p className="text-text-secondary leading-relaxed mt-1">{project.solution}</p>
                                 </div>
                               </div>
@@ -535,54 +624,53 @@ export default function Home({ setActiveSection }) {
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: -10 }}
                               transition={{ duration: 0.2 }}
-                              className="space-y-4"
+                              className="space-y-4 text-xs"
                             >
-                              <div className="p-4 bg-bg-primary border border-border-primary rounded-lg">
+                              <div className="p-4 bg-bg-primary border border-border-primary rounded-xl text-left">
                                 <h4 className="font-mono text-xs font-bold text-text-primary uppercase tracking-wider mb-2">
-                                  System Flow Diagram
+                                  Database & Model Layer Flow
                                 </h4>
-                                <p className="text-xs text-text-secondary leading-relaxed mb-4">{project.architecture}</p>
+                                <p className="text-text-secondary leading-relaxed mb-4">{project.architecture}</p>
                                 
-                                {/* Visual system workflow preview */}
                                 <div className="p-4 bg-bg-secondary rounded border border-border-primary/80 font-mono text-[9px] text-text-secondary space-y-2 select-none">
                                   <div className="flex justify-between items-center bg-bg-primary px-3 py-2 rounded">
-                                    <span className="font-bold text-accent-blue">USER INTERFACE</span>
-                                    <span>React client application view</span>
+                                    <span className="font-bold text-brand-blue">CLIENT VIEW TIER</span>
+                                    <span>React 19 single page application module</span>
                                   </div>
-                                  <div className="text-center text-text-muted my-1">↓ HTTP Rest Requests</div>
+                                  <div className="text-center text-text-muted my-1">↓ API Requests</div>
                                   <div className="flex justify-between items-center bg-bg-primary px-3 py-2 rounded">
-                                    <span className="font-bold text-accent-violet">API MIDDLEWARE & CONTROLLER</span>
-                                    <span>JWT Authentication checks & validation logic</span>
+                                    <span className="font-bold text-brand-purple">MIDDLEWARE JWT AUTH TIER</span>
+                                    <span>Verify tokens and RBAC roles parameters</span>
                                   </div>
-                                  <div className="text-center text-text-muted my-1">↓ Mongoose ORM Operations</div>
+                                  <div className="text-center text-text-muted my-1">↓ Indexed Query</div>
                                   <div className="flex justify-between items-center bg-bg-primary px-3 py-2 rounded">
-                                    <span className="font-bold text-accent-emerald">MONGODB DATA REPOSITORY</span>
-                                    <span>Indexed relational JSON collections</span>
+                                    <span className="font-bold text-brand-emerald">DATA STRUCTURE REPOSITORY</span>
+                                    <span>MongoDB aggregate schemas</span>
                                   </div>
                                 </div>
                               </div>
                             </motion.div>
                           )}
 
-                          {activeProjectTab === 'challenges' && (
+                          {activeProjectTab === 'engineering' && (
                             <motion.div
-                              key="challenges"
+                              key="engineering"
                               initial={{ opacity: 0, y: 10 }}
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: -10 }}
                               transition={{ duration: 0.2 }}
-                              className="space-y-4 font-mono text-xs"
+                              className="space-y-4 font-mono text-xs text-left"
                             >
-                              <div className="p-4 bg-accent-orange/10 text-text-secondary border-l-4 border-l-accent-orange rounded-r">
+                              <div className="p-4 bg-brand-orange/5 text-text-secondary border-l-4 border-l-brand-orange rounded-r-xl">
                                 <h5 className="font-bold text-text-primary uppercase flex items-center gap-1.5 mb-1">
-                                  <AlertCircle size={14} className="text-accent-orange" /> engineering_challenge.log
+                                  engineering_challenge.log
                                 </h5>
                                 <p className="leading-relaxed">{project.challenges}</p>
                               </div>
 
-                              <div className="p-4 bg-accent-emerald/10 text-text-secondary border-l-4 border-l-accent-emerald rounded-r">
+                              <div className="p-4 bg-brand-emerald/5 text-text-secondary border-l-4 border-l-brand-emerald rounded-r-xl">
                                 <h5 className="font-bold text-text-primary uppercase flex items-center gap-1.5 mb-1">
-                                  <CheckCircle size={14} className="text-accent-emerald" /> resolution_status.log
+                                  resolution_status.log
                                 </h5>
                                 <p className="leading-relaxed">{project.outcome}</p>
                               </div>
@@ -590,15 +678,15 @@ export default function Home({ setActiveSection }) {
                           )}
                         </AnimatePresence>
 
-                        {/* Interactive Browser Frame */}
-                        <div className="pt-4 border-t border-border-primary/45">
-                          <div className="project-spotlight-hover rounded-lg overflow-hidden border border-border-primary relative cursor-pointer" data-cursor-text="system_">
-                            <div className="bg-bg-primary px-3 py-1.5 border-b border-border-primary flex items-center gap-1.5">
+                        {/* Interactive Spotlight Preview Mockup */}
+                        <div className="pt-4 border-t border-border-primary/50">
+                          <div className="project-window-spotlight rounded-xl overflow-hidden border border-border-primary relative cursor-pointer" data-cursor-text="view_">
+                            <div className="bg-bg-primary px-3 py-2 border-b border-border-primary flex items-center gap-1.5">
                               <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
                               <span className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
                               <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
                               <span className="text-[8px] font-mono text-text-muted ml-2">
-                                {project.liveUrl !== '#' ? project.liveUrl : 'localhost:3000'}
+                                {project.liveUrl !== '#' ? project.liveUrl : 'localhost:5173'}
                               </span>
                             </div>
                             <div className="aspect-video w-full overflow-hidden bg-bg-primary">
@@ -611,10 +699,10 @@ export default function Home({ setActiveSection }) {
                           </div>
                         </div>
 
-                        {/* Tech matrix tags */}
+                        {/* Technology tags */}
                         <div className="flex flex-wrap gap-1 font-mono text-[9px] pt-2">
                           {project.techStack.map(tech => (
-                            <span key={tech} className="bg-bg-primary border border-border-primary text-text-secondary px-2 py-0.5 rounded font-bold">
+                            <span key={tech} className="bg-bg-primary border border-border-primary text-text-secondary px-2.5 py-0.5 rounded font-bold">
                               {tech}
                             </span>
                           ))}
@@ -629,39 +717,39 @@ export default function Home({ setActiveSection }) {
         </div>
       </section>
 
-      {/* 6. JOURNEY SECTION: DEVELOPER EVOLUTION TIMELINE */}
-      <section id="timeline" className="py-24 bg-bg-secondary border-t border-border-primary">
+      {/* 6. JOURNEY SECTION: DEVELOPER EVOLUTION SYSTEM */}
+      <section id="timeline" className="py-24 bg-bg-secondary border-t border-border-primary grid-bg-dots">
         <div className="section-container text-left">
           <ScrollReveal>
-            <span className="text-[10px] font-mono text-accent-blue font-bold uppercase tracking-wider">
-              05 // Growth History
+            <span className="text-[10px] font-mono text-brand-blue font-bold uppercase tracking-wider">
+              05 // Evolution milestones
             </span>
-            <h2 className="text-3xl md:text-5xl font-black font-heading text-text-primary tracking-tight leading-tight mt-2 mb-12">
-              Evolutionary Milestones
+            <h2 className="text-3xl md:text-5xl font-black text-text-primary tracking-tight leading-tight mt-2 mb-12">
+              Evolutionary Path
             </h2>
           </ScrollReveal>
 
-          {/* Timeline Split Layout */}
+          {/* Stepper split layout */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Year selector */}
+            {/* Left timeline selectors */}
             <div className="lg:col-span-4 space-y-2 font-mono">
               {timelineRoadmap.map((item, idx) => (
                 <button
                   key={item.id}
                   onClick={() => setActiveStageIdx(idx)}
-                  className={`w-full text-left px-5 py-4 rounded border text-xs font-bold transition-all cursor-pointer flex justify-between items-center ${
+                  className={`w-full text-left px-5 py-4 rounded-xl border text-xs font-bold transition-all cursor-pointer flex justify-between items-center ${
                     activeStageIdx === idx
-                      ? 'bg-bg-primary border-text-primary text-text-primary border-l-4 border-l-accent-blue shadow-premium'
+                      ? 'bg-bg-primary border-brand-blue text-brand-blue border-l-4 border-l-brand-blue shadow-premium font-extrabold'
                       : 'bg-transparent border-border-primary/45 text-text-secondary hover:border-border-primary'
                   }`}
                 >
                   <span>{item.year} // {item.title.split(' ')[0]}</span>
-                  <span className="text-[10px] text-accent-blue">{item.type.toUpperCase()}</span>
+                  <span className="text-[10px] text-brand-blue">{item.type.toUpperCase()}</span>
                 </button>
               ))}
             </div>
 
-            {/* Main timeline story block */}
+            {/* Right log viewer details */}
             <div className="lg:col-span-8">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -670,11 +758,11 @@ export default function Home({ setActiveSection }) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -15 }}
                   transition={{ duration: 0.25 }}
-                  className="p-8 bg-bg-primary border border-border-primary rounded-xl space-y-4"
+                  className="p-8 bg-bg-primary border border-border-primary rounded-2xl space-y-4 text-left"
                 >
-                  <div className="flex justify-between items-center border-b border-border-primary/45 pb-3 font-mono text-xs">
+                  <div className="flex justify-between items-center border-b border-border-primary pb-3 font-mono text-xs">
                     <span className="text-text-muted">// EXPERIENCE RECORD</span>
-                    <span className="text-accent-blue font-bold">{timelineRoadmap[activeStageIdx].year}</span>
+                    <span className="text-brand-blue font-bold">{timelineRoadmap[activeStageIdx].year}</span>
                   </div>
 
                   <h3 className="font-heading font-black text-xl text-text-primary">
@@ -693,42 +781,42 @@ export default function Home({ setActiveSection }) {
         </div>
       </section>
 
-      {/* 7. CONTACT SECTION: CLIENT COLLABORATION WORKSPACE */}
-      <section id="contact" className="py-24 bg-bg-primary border-t border-border-primary">
+      {/* 7. CONTACT SECTION: START A PROJECT CONSOLE */}
+      <section id="contact" className="py-24 bg-bg-primary border-t border-border-primary grid-bg-lines">
         <div className="section-container text-left">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* Consultation Intro details */}
+            {/* Onboarding text metrics */}
             <div className="lg:col-span-5 space-y-6">
               <ScrollReveal>
-                <span className="text-[10px] font-mono text-accent-blue font-bold uppercase tracking-wider">
-                  06 // Start Project Intake
+                <span className="text-[10px] font-mono text-brand-blue font-bold uppercase tracking-wider">
+                  06 // Start a Project Console
                 </span>
-                <h2 className="text-3xl md:text-5xl font-black font-heading text-text-primary tracking-tight leading-tight mt-2">
-                  Initiate a Collaboration Workspace
+                <h2 className="text-3xl md:text-5xl font-black text-text-primary tracking-tight leading-tight mt-2">
+                  Initialize Consultation Ticket
                 </h2>
               </ScrollReveal>
 
               <ScrollReveal delay={0.1}>
                 <p className="text-xs text-text-secondary leading-relaxed font-mono">
-                  Enter details to initialize a consultation ticket. We will discuss system specifications, timeline estimates, and database configuration blueprints.
+                  Input project credentials below to write configuration parameters. Together, we'll verify requirements, estimate scope limits, and build system architectures.
                 </p>
               </ScrollReveal>
 
               <ScrollReveal delay={0.15} className="space-y-3 font-mono text-xs text-text-secondary">
                 <div className="flex items-center gap-3">
-                  <Mail size={14} className="text-accent-blue" />
+                  <Mail size={14} className="text-brand-blue" />
                   <a href={`mailto:${personalInfo.email}`} className="hover:underline">{personalInfo.email}</a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <MapPin size={14} className="text-accent-blue" />
+                  <MapPin size={14} className="text-brand-blue" />
                   <span>{personalInfo.location}</span>
                 </div>
               </ScrollReveal>
             </div>
 
-            {/* Intake Form Console */}
+            {/* Form Console ticket setup */}
             <div className="lg:col-span-7">
-              <ScrollReveal direction="left" delay={0.2} className="p-8 bg-bg-secondary border border-border-primary rounded-xl shadow-premium">
+              <ScrollReveal direction="left" delay={0.2} className="p-8 bg-bg-secondary border border-border-primary rounded-2xl shadow-premium">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 font-mono text-xs">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
@@ -737,9 +825,9 @@ export default function Home({ setActiveSection }) {
                         type="text"
                         placeholder="John Doe"
                         {...register('name', { required: 'Name parameter required' })}
-                        className="w-full bg-bg-primary border border-border-primary rounded px-3.5 py-2.5 outline-none focus:border-accent-blue text-text-primary"
+                        className="w-full bg-bg-primary border border-border-primary rounded-lg px-3.5 py-2.5 outline-none focus:border-brand-blue text-text-primary"
                       />
-                      {errors.name && <p className="text-accent-orange text-[9px] mt-1">{errors.name.message}</p>}
+                      {errors.name && <p className="text-brand-orange text-[9px] mt-1">{errors.name.message}</p>}
                     </div>
 
                     <div>
@@ -751,9 +839,9 @@ export default function Home({ setActiveSection }) {
                           required: 'Email parameter required',
                           pattern: { value: /^\S+@\S+$/i, message: 'Invalid email syntax' }
                         })}
-                        className="w-full bg-bg-primary border border-border-primary rounded px-3.5 py-2.5 outline-none focus:border-accent-blue text-text-primary"
+                        className="w-full bg-bg-primary border border-border-primary rounded-lg px-3.5 py-2.5 outline-none focus:border-brand-blue text-text-primary"
                       />
-                      {errors.email && <p className="text-accent-orange text-[9px] mt-1">{errors.email.message}</p>}
+                      {errors.email && <p className="text-brand-orange text-[9px] mt-1">{errors.email.message}</p>}
                     </div>
                   </div>
 
@@ -761,17 +849,17 @@ export default function Home({ setActiveSection }) {
                     <label className="block text-[10px] uppercase font-bold text-text-primary mb-1">project_specifications</label>
                     <textarea
                       rows="4"
-                      placeholder="Scope, database needs, payment integrations, or timeline details..."
+                      placeholder="Input scope metrics, payment system needs, dashboard criteria, or script automations details..."
                       {...register('message', { required: 'Message body parameter required' })}
-                      className="w-full bg-bg-primary border border-border-primary rounded px-3.5 py-2.5 outline-none focus:border-accent-blue text-text-primary resize-none"
+                      className="w-full bg-bg-primary border border-border-primary rounded-lg px-3.5 py-2.5 outline-none focus:border-brand-blue text-text-primary resize-none"
                     />
-                    {errors.message && <p className="text-accent-orange text-[9px] mt-1">{errors.message.message}</p>}
+                    {errors.message && <p className="text-brand-orange text-[9px] mt-1">{errors.message.message}</p>}
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-text-primary text-bg-primary font-bold uppercase tracking-wider py-3 rounded hover:opacity-95 transition-opacity disabled:opacity-50 cursor-pointer flex items-center justify-center gap-1.5"
+                    className="w-full bg-brand-blue hover:bg-brand-blue/95 text-white font-bold uppercase tracking-wider py-3 rounded-lg disabled:opacity-50 cursor-pointer flex items-center justify-center gap-1.5 shadow-card"
                   >
                     {isSubmitting ? 'INITIALIZING...' : 'EXECUTE_SEND'} <Send size={12} />
                   </button>
@@ -782,7 +870,7 @@ export default function Home({ setActiveSection }) {
                         initial={{ opacity: 0, y: 5 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 5 }}
-                        className="p-3 bg-accent-emerald/10 border border-accent-emerald text-accent-emerald rounded text-center text-[10px]"
+                        className="p-3 bg-brand-emerald/10 border border-brand-emerald text-brand-emerald rounded-lg text-center text-[10px]"
                       >
                         [SUCCESS] Ticket initialized. Hari Prasath will contact you shortly.
                       </motion.div>
@@ -792,7 +880,7 @@ export default function Home({ setActiveSection }) {
                         initial={{ opacity: 0, y: 5 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 5 }}
-                        className="p-3 bg-accent-orange/10 border border-accent-orange text-accent-orange rounded text-center text-[10px]"
+                        className="p-3 bg-brand-orange/10 border border-brand-orange text-brand-orange rounded-lg text-center text-[10px]"
                       >
                         [ERROR] Execution failed. Verify credentials and try again.
                       </motion.div>
