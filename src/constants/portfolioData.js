@@ -9,7 +9,7 @@ export const personalInfo = {
   phone: "+91 9361876698",
   location: "Tamil Nadu, India",
   github: "https://github.com/Hari-2812",
-  linkedin: "https://linkedin.com/in/hari-prasath-k",
+  linkedin: "https://www.linkedin.com/in/hari-prasath-72b702259/",
   whatsapp: "https://wa.me/919361876698",
   resumeUrl: "https://drive.google.com/file/d/1OTzXIgonVHfHzX0_kFs6pYcvoPp2lPLW/view?usp=sharing",
 };
