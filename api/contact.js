@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, projectType, budget, message, honeypot } = req.body;
+    const { name, email, projectType, message, honeypot } = req.body;
 
     // Lightweight honeypot
     if (honeypot) {
@@ -42,7 +42,6 @@ export default async function handler(req, res) {
     const sName = sanitizeHTML(name);
     const sEmail = sanitizeHTML(email);
     const sProjectType = projectType ? sanitizeHTML(projectType) : '';
-    const sBudget = budget ? sanitizeHTML(budget) : '';
     const sMessage = sanitizeHTML(message).replace(/\n/g, '<br />');
 
     const htmlContent = `
@@ -50,7 +49,6 @@ export default async function handler(req, res) {
       <p><strong>Name:</strong> ${sName}</p>
       <p><strong>Email:</strong> ${sEmail}</p>
       ${sProjectType ? `<p><strong>Project Type:</strong> ${sProjectType}</p>` : ''}
-      ${sBudget ? `<p><strong>Budget Range:</strong> ${sBudget}</p>` : ''}
       <br />
       <p><strong>Message:</strong></p>
       <p>${sMessage}</p>

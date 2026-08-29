@@ -686,22 +686,6 @@ export default function Home({ setActiveSection }) {
                         <option value="Other">Other Custom Software</option>
                       </select>
                     </div>
-
-                    <div>
-                      <label className="block text-[10px] uppercase font-bold text-text-primary mb-1">budget_range</label>
-                      <select
-                        {...register('budget')}
-                        className="w-full bg-bg-primary border border-border-primary rounded-lg px-3.5 py-2.5 outline-none focus:border-brand-forest text-text-primary appearance-none"
-                      >
-                        <option value="">Select your budget range</option>
-                        <option value="Under ₹25,000">Under ₹25,000</option>
-                        <option value="₹25,000 – ₹50,000">₹25,000 – ₹50,000</option>
-                        <option value="₹50,000 – ₹1,00,000">₹50,000 – ₹1,00,000</option>
-                        <option value="₹1,00,000 – ₹2,50,000">₹1,00,000 – ₹2,50,000</option>
-                        <option value="₹2,50,000+">₹2,50,000+</option>
-                        <option value="Not Sure Yet">Not Sure Yet</option>
-                      </select>
-                    </div>
                     
                     {/* Honeypot field */}
                     <div style={{ display: 'none' }} aria-hidden="true">
