@@ -155,35 +155,47 @@ export default function Home({ setActiveSection }) {
                   01 // Developer Story
                 </span>
                 <h2 className="text-3xl md:text-5xl font-extrabold text-text-primary tracking-tight font-serif mt-2">
-                  Bridging business objectives with reliable architecture.
+                  Building software<br className="hidden md:block" /> around real business problems.
                 </h2>
               </ScrollReveal>
 
               <ScrollReveal delay={0.1}>
-                <p className="text-sm text-text-secondary leading-relaxed">
-                  I view software engineering through a consulting lens. My background in Computer Science equips me to evaluate relational data integrity, configure secure route permissions, and design modular state flows. I leverage this technical expertise to deliver client-focused applications that reduce manual overhead and improve pipeline visibility.
-                </p>
+                <div className="space-y-4">
+                  <p className="text-sm text-text-secondary leading-relaxed">
+                    I’m a freelance software developer focused on building practical digital products for real-world business needs. My work spans full-stack web applications, LMS platforms, CRM systems, admin dashboards, and workflow automation. I combine MERN development with tools such as Google Apps Script to turn manual processes and business requirements into reliable software.
+                  </p>
+                  <p className="text-sm text-text-secondary leading-relaxed">
+                    My approach is straightforward: understand the requirement, identify the actual problem, design the solution, build the application, and deploy.
+                  </p>
+                </div>
               </ScrollReveal>
 
               <ScrollReveal delay={0.15}>
                 <div className="p-6 bg-bg-primary border border-border-primary rounded-xl font-serif text-lg italic text-brand-forest">
-                  "Pragmatic engineering means focusing on data safety, designing clear routes, and creating lightweight frontends that users trust."
+                  "Good software starts with understanding the problem — then engineering the simplest reliable solution."
                 </div>
               </ScrollReveal>
             </div>
 
             <div className="lg:col-span-5 space-y-4 font-mono text-xs">
               <ScrollReveal direction="left" className="p-6 bg-bg-primary border border-border-primary rounded-xl space-y-2.5">
-                <h3 className="font-bold text-brand-terracotta uppercase tracking-wider">// Operational Performance</h3>
+                <h3 className="font-bold text-brand-terracotta uppercase tracking-wider">// PRODUCT ENGINEERING</h3>
                 <p className="text-text-secondary leading-relaxed">
-                  Writing optimized MongoDB queries and API endpoints to ensure system response speeds remain under 50ms.
+                  Building full-stack applications with structured APIs, database-driven workflows, responsive interfaces, and maintainable application architecture.
                 </p>
               </ScrollReveal>
 
               <ScrollReveal direction="left" delay={0.1} className="p-6 bg-bg-primary border border-border-primary rounded-xl space-y-2.5">
-                <h3 className="font-bold text-brand-gold uppercase tracking-wider">// Security Integration</h3>
+                <h3 className="font-bold text-brand-gold uppercase tracking-wider">// BUSINESS AUTOMATION</h3>
                 <p className="text-text-secondary leading-relaxed">
-                  Implementing token authorization checks and route parameters to safeguard client customer databases.
+                  Connecting applications and business workflows through APIs, Google Apps Script, automated notifications, scheduled processes, and practical integrations.
+                </p>
+              </ScrollReveal>
+
+              <ScrollReveal direction="left" delay={0.2} className="p-6 bg-bg-primary border border-border-primary rounded-xl space-y-2.5">
+                <h3 className="font-bold text-brand-emerald uppercase tracking-wider">// SYSTEM DESIGN</h3>
+                <p className="text-text-secondary leading-relaxed">
+                  Designing role-based applications, administrative workflows, data management systems, and scalable foundations around real product requirements.
                 </p>
               </ScrollReveal>
             </div>
