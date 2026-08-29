@@ -49,15 +49,28 @@ export default function Home({ setActiveSection }) {
 
   const onSubmit = async (data) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1200));
-      setFormStatus('success');
-      reset();
-      confetti({
-        particleCount: 150,
-        spread: 85,
-        origin: { y: 0.85 },
-        colors: ['#064E3B', '#D97706', '#C2410C', '#7C3AED'],
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setFormStatus('success');
+        reset();
+        confetti({
+          particleCount: 150,
+          spread: 85,
+          origin: { y: 0.85 },
+          colors: ['#064E3B', '#D97706', '#C2410C', '#7C3AED'],
+        });
+      } else {
+        setFormStatus('error');
+      }
       setTimeout(() => setFormStatus(null), 5000);
     } catch (e) {
       setFormStatus('error');
@@ -658,6 +671,41 @@ export default function Home({ setActiveSection }) {
                       />
                       {errors.email && <p className="text-brand-terracotta text-[9px] mt-1">{errors.email.message}</p>}
                     </div>
+                    
+                    <div>
+                      <label className="block text-[10px] uppercase font-bold text-text-primary mb-1">project_type</label>
+                      <select
+                        {...register('projectType')}
+                        className="w-full bg-bg-primary border border-border-primary rounded-lg px-3.5 py-2.5 outline-none focus:border-brand-forest text-text-primary appearance-none"
+                      >
+                        <option value="">Select project type</option>
+                        <option value="Web Application">Web Application (Full-Stack)</option>
+                        <option value="LMS">Learning Management System (LMS)</option>
+                        <option value="CRM">CRM / Dashboard</option>
+                        <option value="Automation">Business Automation (Apps Script)</option>
+                        <option value="Other">Other Custom Software</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] uppercase font-bold text-text-primary mb-1">budget_range</label>
+                      <select
+                        {...register('budget')}
+                        className="w-full bg-bg-primary border border-border-primary rounded-lg px-3.5 py-2.5 outline-none focus:border-brand-forest text-text-primary appearance-none"
+                      >
+                        <option value="">Select estimated budget</option>
+                        <option value="< $1k">Under $1,000</option>
+                        <option value="$1k - $5k">$1,000 - $5,000</option>
+                        <option value="$5k - $10k">$5,000 - $10,000</option>
+                        <option value="$10k+">$10,000+</option>
+                        <option value="To be discussed">To be discussed</option>
+                      </select>
+                    </div>
+                    
+                    {/* Honeypot field */}
+                    <div style={{ display: 'none' }} aria-hidden="true">
+                      <input type="text" {...register('honeypot')} tabIndex="-1" autoComplete="off" />
+                    </div>
                   </div>
 
                   <div>
@@ -674,9 +722,9 @@ export default function Home({ setActiveSection }) {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-brand-forest hover:bg-brand-forest/95 text-[#FAF7F2] font-bold uppercase tracking-wider py-3 rounded-lg disabled:opacity-50 cursor-pointer flex items-center justify-center gap-1.5 shadow-card"
+                    className="w-full bg-brand-forest hover:bg-brand-forest/95 text-[#FAF7F2] font-bold uppercase tracking-wider py-3 rounded-lg disabled:opacity-50 cursor-pointer flex items-center justify-center gap-1.5 shadow-card transition-all"
                   >
-                    {isSubmitting ? 'INITIALIZING...' : 'Start The Conversation →'}
+                    {isSubmitting ? 'SENDING...' : 'Start The Conversation →'}
                   </button>
 
                   <AnimatePresence>
@@ -687,7 +735,7 @@ export default function Home({ setActiveSection }) {
                         exit={{ opacity: 0, y: 5 }}
                         className="p-3 bg-brand-emerald/10 border border-brand-emerald text-brand-emerald rounded-lg text-center text-[10px]"
                       >
-                        [SUCCESS] Project ticket initialized. Hari Prasath will follow up shortly.
+                        [SUCCESS] Your message has been sent. I'll review your project details and get back to you.
                       </motion.div>
                     )}
                     {formStatus === 'error' && (
@@ -697,7 +745,7 @@ export default function Home({ setActiveSection }) {
                         exit={{ opacity: 0, y: 5 }}
                         className="p-3 bg-brand-terracotta/10 border border-brand-terracotta text-brand-terracotta rounded-lg text-center text-[10px]"
                       >
-                        [ERROR] Ticket write failure. Verify parameters and retry.
+                        [ERROR] Something went wrong while sending your message. Please try again.
                       </motion.div>
                     )}
                   </AnimatePresence>
