@@ -62,13 +62,12 @@ export default function Navbar({ activeSection }) {
   }, [lastScrollY]);
 
   const navLinks = [
-    { id: 'hero', label: 'Studio' },
-    { id: 'about', label: 'Profile' },
-    { id: 'skills', label: 'Universe' },
-    { id: 'services', label: 'Services' },
-    { id: 'projects', label: 'Gallery' },
-    { id: 'timeline', label: 'Growth' },
-    { id: 'contact', label: 'Intake' }
+    { id: 'hero', label: 'HOME' },
+    { id: 'about', label: 'ABOUT' },
+    { id: 'projects', label: 'WORK' },
+    { id: 'services', label: 'SERVICES' },
+    { id: 'timeline', label: 'PROCESS' },
+    { id: 'contact', label: 'CONTACT' }
   ];
 
   const handleNavClick = (e, id) => {
@@ -112,7 +111,7 @@ export default function Navbar({ activeSection }) {
             <div className="flex flex-col text-left">
               <span className="text-sm font-bold tracking-tight text-text-primary font-serif">Hari Prasath</span>
               <span className="text-[8px] text-brand-gold font-mono font-bold tracking-wider -mt-1">
-                SOFTWARE STUDIO
+                FREELANCE SOFTWARE DEVELOPER
               </span>
             </div>
           </Link>
@@ -161,7 +160,7 @@ export default function Navbar({ activeSection }) {
                 rel="noopener noreferrer" 
                 className="bg-brand-forest text-[#FAF7F2] hover:bg-brand-forest/90 px-4.5 py-2.5 rounded-lg text-[9px] font-bold font-mono tracking-wider uppercase inline-flex items-center gap-1 transition-transform hover:scale-102"
               >
-                Intake.PDF <ArrowUpRight size={11} />
+                VIEW RESUME <ArrowUpRight size={11} />
               </a>
             </Magnet>
           </div>
@@ -221,7 +220,7 @@ export default function Navbar({ activeSection }) {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 bg-brand-forest text-[#FAF7F2] px-4 py-2 rounded-lg text-[9px] font-bold"
                   >
-                    Get Resume <ArrowUpRight size={11} />
+                    VIEW RESUME <ArrowUpRight size={11} />
                   </a>
                 </div>
               </div>

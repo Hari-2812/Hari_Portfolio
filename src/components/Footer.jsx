@@ -84,7 +84,7 @@ export default function Footer() {
                     rel="noopener noreferrer" 
                     className="border border-border-primary hover:bg-bg-primary text-text-primary px-5 py-2.5 rounded-md text-xs font-bold font-mono tracking-wider uppercase inline-flex items-center gap-1.5 transition-colors"
                   >
-                    Get Resume <ArrowUpRight size={12} />
+                    VIEW RESUME <ArrowUpRight size={12} />
                   </a>
                 </Magnet>
               </div>
@@ -123,13 +123,12 @@ export default function Footer() {
               </h4>
               <ul className="grid grid-cols-2 gap-2 text-[11px]">
                 {[
-                  { id: 'hero', label: 'Dashboard' },
-                  { id: 'about', label: 'Identity' },
-                  { id: 'skills', label: 'Ecosystem' },
-                  { id: 'services', label: 'Solutions' },
-                  { id: 'projects', label: 'Products' },
-                  { id: 'timeline', label: 'Evolution' },
-                  { id: 'contact', label: 'Contact' }
+                  { id: 'hero', label: 'HOME' },
+                  { id: 'about', label: 'ABOUT' },
+                  { id: 'projects', label: 'WORK' },
+                  { id: 'services', label: 'SERVICES' },
+                  { id: 'timeline', label: 'PROCESS' },
+                  { id: 'contact', label: 'CONTACT' }
                 ].map(link => (
                   <li key={link.id}>
                     <a 

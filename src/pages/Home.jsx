@@ -75,8 +75,8 @@ export default function Home({ setActiveSection }) {
   return (
     <>
       <Helmet>
-        <title>Hari Prasath K | Independent Software Studio & Product Engineer</title>
-        <meta name="description" content="Portfolio of Hari Prasath K, a professional Freelance MERN Stack Developer building custom CRMs, LMS platforms, and Google Workspace automations." />
+        <title>Hari Prasath K — Freelance Software Developer</title>
+        <meta name="description" content="Freelance software developer building full-stack web applications, business software, SaaS platforms, automation systems, and custom digital products." />
       </Helmet>
 
       {/* 1. HERO SECTION: FOUNDER PERSONAL BRAND */}
@@ -89,7 +89,7 @@ export default function Home({ setActiveSection }) {
             <ScrollReveal delay={0.05}>
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-forest/5 border border-brand-forest/10 rounded-lg text-xs font-mono font-bold text-brand-forest">
                 <span className="h-1.5 w-1.5 rounded-full bg-brand-emerald animate-ping" />
-                AVAILABILITY // READY TO BIND CONTRACTS
+                AVAILABLE FOR FREELANCE PROJECTS
               </div>
             </ScrollReveal>
 
@@ -103,19 +103,19 @@ export default function Home({ setActiveSection }) {
 
             <ScrollReveal delay={0.15}>
               <p className="text-sm font-sans text-text-secondary leading-relaxed max-w-xl">
-                I help businesses transform ideas into reliable digital products through scalable MERN applications, integration automations, and custom workflows configured for rapid growth.
+                I help businesses turn ideas into reliable digital products through scalable MERN applications, automation systems, and custom software built for real-world operations.
               </p>
             </ScrollReveal>
 
             <ScrollReveal delay={0.2} className="flex flex-wrap gap-4 pt-2">
               <Magnet>
                 <a href="#projects" className="magnetic-attract bg-brand-forest hover:bg-brand-forest/95 text-[#FAF7F2] px-6 py-3.5 rounded-lg text-xs font-mono font-bold uppercase tracking-wider inline-flex items-center gap-2 shadow-premium transition-transform hover:scale-102">
-                  Explore My Builds <ArrowRight size={13} />
+                  EXPLORE MY WORK <ArrowRight size={13} />
                 </a>
               </Magnet>
               <Magnet>
                 <a href="#contact" className="magnetic-attract border border-brand-forest/30 hover:bg-bg-secondary text-brand-forest px-6 py-3.5 rounded-lg text-xs font-mono font-bold uppercase tracking-wider transition-colors">
-                  Discuss Your Idea
+                  START A PROJECT
                 </a>
               </Magnet>
             </ScrollReveal>
@@ -125,19 +125,19 @@ export default function Home({ setActiveSection }) {
             <ScrollReveal direction="left" delay={0.2} className="space-y-4">
               <div className="p-6 bg-bg-secondary border border-border-primary rounded-xl shadow-premium text-left font-mono relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-brand-gold/5 rounded-full blur-xl" />
-                <span className="text-[9px] text-brand-gold font-bold block mb-1">CAPABILITIES // SCALABLE</span>
-                <h3 className="text-sm font-bold text-text-primary mb-2 font-serif font-semibold">Custom CRM & LMS Platforms</h3>
+                <span className="text-[9px] text-brand-gold font-bold block mb-1">CAPABILITIES // FULL-STACK</span>
+                <h3 className="text-sm font-bold text-text-primary mb-2 font-serif font-semibold">Custom Business Applications</h3>
                 <p className="text-xs text-text-secondary leading-relaxed">
-                  Replacing manual tracking pipelines with secure authorization layers and payment gates.
+                  CRM, LMS, dashboards, portals, and internal platforms engineered around real business workflows.
                 </p>
               </div>
 
               <div className="p-6 bg-bg-secondary border border-border-primary rounded-xl shadow-premium text-left font-mono relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-brand-terracotta/5 rounded-full blur-xl" />
                 <span className="text-[9px] text-brand-terracotta font-bold block mb-1">DELIVERABLES // AUTOMATION</span>
-                <h3 className="text-sm font-bold text-text-primary mb-2 font-serif font-semibold">Workflow Optimization Tools</h3>
+                <h3 className="text-sm font-bold text-text-primary mb-2 font-serif font-semibold">Workflow & Process Automation</h3>
                 <p className="text-xs text-text-secondary leading-relaxed">
-                  Configuring server scripts and Workspace triggers to convert administrative processes into simple workflows.
+                  Custom integrations, server-side workflows, notifications, and operational tools that reduce repetitive work.
                 </p>
               </div>
             </ScrollReveal>
