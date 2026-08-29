@@ -263,53 +263,63 @@ export const projects = [
 export const timelineRoadmap = [
   {
     id: 1,
-    year: "2026",
-    label: "FREELANCE",
-    title: "Freelance Software Engineering",
-    header: "// CURRENT WORK",
-    subtitle: "FULL-STACK APPLICATION DEVELOPMENT",
-    description: "Developing full-stack business applications and automation systems, from LMS and CRM platforms to administrative dashboards, communication workflows, and custom productivity tools.",
-    type: "freelance"
+    year: "01",
+    label: "DISCOVER",
+    title: "Understand The Problem",
+    header: "// PROCESS STAGE",
+    subtitle: "REQUIREMENTS & DISCOVERY",
+    description: "I start by understanding the business requirement, users, existing workflow, and the outcome the software needs to achieve.",
+    type: "requirements"
   },
   {
     id: 2,
-    year: "2025",
-    label: "IEEE",
-    title: "IEEE — Engineering & Professional Development",
-    header: "// PROFESSIONAL ACHIEVEMENT",
-    subtitle: "IEEE XTREME UNI RANK 4",
-    description: "Competed in the global 24-hour programming hackathon, solving algorithmic and data structure problems. Ranked 4th at the University level.",
-    type: "achievement"
+    year: "02",
+    label: "PLAN",
+    title: "Shape The Solution",
+    header: "// PROCESS STAGE",
+    subtitle: "ARCHITECTURE & PLANNING",
+    description: "I translate requirements into application structure, user flows, data models, APIs, and the technical approach needed to build the product.",
+    type: "architecture"
   },
   {
     id: 3,
-    year: "2024",
-    label: "MERN",
-    title: "MERN Stack Development",
-    header: "// ENGINEERING DEVELOPMENT",
-    subtitle: "FULL-STACK FOUNDATIONS",
-    description: "Developing applications across the frontend, backend, APIs, databases, authentication, and business workflows using the MERN ecosystem.",
-    type: "engineering"
+    year: "03",
+    label: "ENGINEER",
+    title: "Build The Application",
+    header: "// PROCESS STAGE",
+    subtitle: "FULL-STACK DEVELOPMENT",
+    description: "I develop the product across frontend, backend, database, authentication, dashboards, and business workflows using the technologies suited to the requirement.",
+    type: "development"
   },
   {
     id: 4,
-    year: "2023",
-    label: "DEVELOPMENT",
-    title: "Building Software Foundations",
-    header: "// DEVELOPMENT FOUNDATION",
-    subtitle: "300+ ALGORITHMIC CHALLENGES",
-    description: "Strengthened my programming fundamentals through hands-on development, problem solving, and practical application building.",
-    type: "foundation"
+    year: "04",
+    label: "INTEGRATE",
+    title: "Connect The Workflow",
+    header: "// PROCESS STAGE",
+    subtitle: "INTEGRATION & AUTOMATION",
+    description: "I connect APIs, services, notifications, data workflows, and business automation to turn individual components into a complete working system.",
+    type: "automation"
   },
   {
     id: 5,
-    year: "2022",
-    label: "ANNA UNIVERSITY",
-    title: "Anna University — Computer Science Engineering",
-    header: "// ACADEMIC FOUNDATION",
-    subtitle: "COMPUTER SCIENCE FOUNDATIONS",
-    description: "Built a foundation in programming, object-oriented concepts, databases, networking, and software engineering principles.",
-    type: "education"
+    year: "05",
+    label: "TEST",
+    title: "Validate The Product",
+    header: "// PROCESS STAGE",
+    subtitle: "TESTING & REFINEMENT",
+    description: "I test core workflows, verify integrations, fix issues, and refine the application before production delivery.",
+    type: "quality"
+  },
+  {
+    id: 6,
+    year: "06",
+    label: "DEPLOY",
+    title: "Ship To Production",
+    header: "// PROCESS STAGE",
+    subtitle: "DEPLOYMENT & DELIVERY",
+    description: "I deploy the application, verify the production environment, and make sure the delivered software is ready for real-world use.",
+    type: "delivery"
   }
 ];
 

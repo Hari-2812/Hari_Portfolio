@@ -539,11 +539,14 @@ export default function Home({ setActiveSection }) {
         <div className="section-container text-left">
           <ScrollReveal>
             <span className="text-[10px] font-mono text-brand-forest font-bold uppercase tracking-widest">
-              05 // Evolution
+              05 // PROCESS
             </span>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-text-primary tracking-tight font-serif mt-2 mb-12">
-              Evolution As A Software Engineer
+            <h2 className="text-3xl md:text-5xl font-extrabold text-text-primary tracking-tight font-serif mt-2 mb-4">
+              How I Build Software
             </h2>
+            <p className="text-sm text-text-secondary leading-relaxed max-w-2xl mb-12">
+              A structured approach to turning business requirements into reliable, production-ready software.
+            </p>
           </ScrollReveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
