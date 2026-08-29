@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
     const BREVO_API_KEY = process.env.BREVO_API_KEY;
     const BREVO_SENDER_EMAIL = process.env.BREVO_SENDER_EMAIL;
-    const BREVO_SENDER_NAME = process.env.BREVO_SENDER_NAME || 'Hari Prasath — Portfolio';
+    const BREVO_SENDER_NAME = process.env.BREVO_SENDER_NAME || 'Hari Prasath | Freelance Software Developer';
     const CONTACT_RECEIVER_EMAIL = process.env.CONTACT_RECEIVER_EMAIL;
 
     if (!BREVO_API_KEY || !BREVO_SENDER_EMAIL || !CONTACT_RECEIVER_EMAIL) {
@@ -50,7 +50,7 @@ export default async function handler(req, res) {
       <p><strong>Name:</strong> ${sName}</p>
       <p><strong>Email:</strong> ${sEmail}</p>
       ${sProjectType ? `<p><strong>Project Type:</strong> ${sProjectType}</p>` : ''}
-      ${sBudget ? `<p><strong>Budget:</strong> ${sBudget}</p>` : ''}
+      ${sBudget ? `<p><strong>Budget Range:</strong> ${sBudget}</p>` : ''}
       <br />
       <p><strong>Message:</strong></p>
       <p>${sMessage}</p>

@@ -693,12 +693,13 @@ export default function Home({ setActiveSection }) {
                         {...register('budget')}
                         className="w-full bg-bg-primary border border-border-primary rounded-lg px-3.5 py-2.5 outline-none focus:border-brand-forest text-text-primary appearance-none"
                       >
-                        <option value="">Select estimated budget</option>
-                        <option value="< $1k">Under $1,000</option>
-                        <option value="$1k - $5k">$1,000 - $5,000</option>
-                        <option value="$5k - $10k">$5,000 - $10,000</option>
-                        <option value="$10k+">$10,000+</option>
-                        <option value="To be discussed">To be discussed</option>
+                        <option value="">Select your budget range</option>
+                        <option value="Under ₹25,000">Under ₹25,000</option>
+                        <option value="₹25,000 – ₹50,000">₹25,000 – ₹50,000</option>
+                        <option value="₹50,000 – ₹1,00,000">₹50,000 – ₹1,00,000</option>
+                        <option value="₹1,00,000 – ₹2,50,000">₹1,00,000 – ₹2,50,000</option>
+                        <option value="₹2,50,000+">₹2,50,000+</option>
+                        <option value="Not Sure Yet">Not Sure Yet</option>
                       </select>
                     </div>
                     
