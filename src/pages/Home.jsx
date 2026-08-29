@@ -391,26 +391,28 @@ export default function Home({ setActiveSection }) {
               <div className="text-[9px] text-text-muted uppercase border-b border-border-primary pb-2 mb-3">
                 PRODUCT_BUILD_DIRECTORY
               </div>
-              {projects.map((project) => (
+              {projects.map((project, index) => (
                 <button
                   key={project.id}
                   onClick={() => setSelectedProject(project)}
                   className="w-full text-left px-5 py-4 rounded-xl border border-border-primary/50 bg-bg-secondary hover:border-brand-forest transition-all cursor-pointer flex justify-between items-center project-gallery-hover"
-                  data-cursor-text="EXPLORE"
+                  data-cursor-text={project.hoverText}
+                  title={project.hoverText}
                 >
-                  <span className="font-bold text-text-primary truncate">{project.title}</span>
+                  <span className="font-bold text-text-primary truncate">0{index + 1} — {project.title}</span>
                   <ArrowRight size={12} className="text-brand-gold shrink-0 ml-2" />
                 </button>
               ))}
             </div>
 
             <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-              {projects.slice(0, 4).map((p) => (
+              {projects.slice(0, 5).map((p) => (
                 <div 
                   key={p.id} 
                   onClick={() => setSelectedProject(p)}
                   className="bg-bg-secondary border border-border-primary rounded-xl overflow-hidden shadow-card hover:shadow-premium transition-all duration-300 cursor-pointer project-gallery-hover"
-                  data-cursor-text="EXPLORE"
+                  data-cursor-text={p.hoverText}
+                  title={p.hoverText}
                 >
                   <div className="aspect-video w-full overflow-hidden bg-bg-primary border-b border-border-primary">
                     <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
@@ -467,7 +469,7 @@ export default function Home({ setActiveSection }) {
                           rel="noopener noreferrer"
                           className="border border-border-primary hover:bg-bg-primary text-text-primary text-[10px] font-mono font-bold px-4 py-2 rounded-lg inline-flex items-center gap-1.5 transition-colors"
                         >
-                          <FaGithub size={12} /> Explore Codebase →
+                          <FaGithub size={12} /> EXPLORE CODEBASE →
                         </a>
                       )}
                       {selectedProject.liveUrl !== '#' && (
@@ -477,7 +479,7 @@ export default function Home({ setActiveSection }) {
                           rel="noopener noreferrer"
                           className="bg-brand-forest text-[#FAF7F2] text-[10px] font-mono font-bold px-4 py-2 rounded-lg inline-flex items-center gap-1.5 transition-opacity hover:opacity-90"
                         >
-                          Open Live Experience → <ExternalLink size={12} />
+                          EXPERIENCE LIVE PRODUCT → <ExternalLink size={12} />
                         </a>
                       )}
                     </div>
