@@ -76,7 +76,7 @@ export default function Home({ setActiveSection }) {
     <>
       <Helmet>
         <title>Hari Prasath K — Freelance Software Developer</title>
-        <meta name="description" content="Freelance software developer building full-stack web applications, business software, SaaS platforms, automation systems, and custom digital products." />
+        <meta name="description" content="Freelance software developer building LMS platforms, CRM systems, admin dashboards, business automation, and full-stack web applications." />
       </Helmet>
 
       {/* 1. HERO SECTION: FOUNDER PERSONAL BRAND */}
@@ -89,21 +89,21 @@ export default function Home({ setActiveSection }) {
             <ScrollReveal delay={0.05}>
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-forest/5 border border-brand-forest/10 rounded-lg text-xs font-mono font-bold text-brand-forest">
                 <span className="h-1.5 w-1.5 rounded-full bg-brand-emerald animate-ping" />
-                AVAILABLE FOR FREELANCE PROJECTS
+                AVAILABLE FOR FREELANCE SOFTWARE PROJECTS
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.1}>
               <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-none text-text-primary font-serif">
-                Engineering <br />
-                <span className="text-brand-forest italic font-normal">Reliable Web Solutions</span> <br />
-                For Modern Businesses.
+                Engineering<br />
+                <span className="text-text-primary">Business Software</span><br />
+                That Actually Works.
               </h1>
             </ScrollReveal>
 
             <ScrollReveal delay={0.15}>
               <p className="text-sm font-sans text-text-secondary leading-relaxed max-w-xl">
-                I help businesses turn ideas into reliable digital products through scalable MERN applications, automation systems, and custom software built for real-world operations.
+                I engineer full-stack business applications including LMS platforms, CRM systems, admin dashboards, and workflow automation — combining MERN development with practical tools like Google Apps Script.
               </p>
             </ScrollReveal>
 
@@ -126,18 +126,18 @@ export default function Home({ setActiveSection }) {
               <div className="p-6 bg-bg-secondary border border-border-primary rounded-xl shadow-premium text-left font-mono relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-brand-gold/5 rounded-full blur-xl" />
                 <span className="text-[9px] text-brand-gold font-bold block mb-1">CAPABILITIES // FULL-STACK</span>
-                <h3 className="text-sm font-bold text-text-primary mb-2 font-serif font-semibold">Custom Business Applications</h3>
+                <h3 className="text-sm font-bold text-text-primary mb-2 font-serif font-semibold">LMS, CRM & Admin Systems</h3>
                 <p className="text-xs text-text-secondary leading-relaxed">
-                  CRM, LMS, dashboards, portals, and internal platforms engineered around real business workflows.
+                  Learning platforms, CRM workflows, dashboards, and internal systems built around real operational requirements.
                 </p>
               </div>
 
               <div className="p-6 bg-bg-secondary border border-border-primary rounded-xl shadow-premium text-left font-mono relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-brand-terracotta/5 rounded-full blur-xl" />
                 <span className="text-[9px] text-brand-terracotta font-bold block mb-1">DELIVERABLES // AUTOMATION</span>
-                <h3 className="text-sm font-bold text-text-primary mb-2 font-serif font-semibold">Workflow & Process Automation</h3>
+                <h3 className="text-sm font-bold text-text-primary mb-2 font-serif font-semibold">Google Apps Script Automation</h3>
                 <p className="text-xs text-text-secondary leading-relaxed">
-                  Custom integrations, server-side workflows, notifications, and operational tools that reduce repetitive work.
+                  Automating repetitive business workflows with Apps Script, spreadsheets, email triggers, scheduled jobs, and connected business processes.
                 </p>
               </div>
             </ScrollReveal>
