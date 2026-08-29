@@ -542,7 +542,7 @@ export default function Home({ setActiveSection }) {
               05 // Evolution
             </span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-text-primary tracking-tight font-serif mt-2 mb-12">
-              Evolution As A Developer
+              Evolution As A Software Engineer
             </h2>
           </ScrollReveal>
 
@@ -558,7 +558,7 @@ export default function Home({ setActiveSection }) {
                       : 'bg-transparent border-border-primary/45 text-text-secondary hover:border-border-primary'
                   }`}
                 >
-                  <span>{item.year} // {item.title.split(' ')[0]}</span>
+                  <span>{item.year} // {item.label}</span>
                   <span className="text-[10px] text-brand-forest">{item.type.toUpperCase()}</span>
                 </button>
               ))}
@@ -575,7 +575,7 @@ export default function Home({ setActiveSection }) {
                   className="p-8 bg-bg-primary border border-border-primary rounded-2xl space-y-4 text-left font-sans text-xs"
                 >
                   <div className="flex justify-between items-center border-b border-border-primary pb-3 font-mono text-[10px]">
-                    <span className="text-text-muted">// HISTORICAL RECORDS</span>
+                    <span className="text-text-muted">{timelineRoadmap[activeStageIdx].header}</span>
                     <span className="text-brand-forest font-bold">{timelineRoadmap[activeStageIdx].year}</span>
                   </div>
 

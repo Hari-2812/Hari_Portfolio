@@ -264,41 +264,51 @@ export const timelineRoadmap = [
   {
     id: 1,
     year: "2026",
-    title: "Freelance Developer & Graduate",
-    subtitle: "Custom SaaS applications & automations",
-    description: "Built custom Learning Management Systems (LMS), CRM platforms, and Google Workspace script engines for business clients. Graduated with a B.E. in Computer Science & Engineering.",
+    label: "FREELANCE",
+    title: "Freelance Software Engineering",
+    header: "// CURRENT WORK",
+    subtitle: "FULL-STACK APPLICATION DEVELOPMENT",
+    description: "Developing full-stack business applications and automation systems, from LMS and CRM platforms to administrative dashboards, communication workflows, and custom productivity tools.",
     type: "freelance"
   },
   {
     id: 2,
     year: "2025",
-    title: "IEEE Xtreme Uni Rank 4",
-    subtitle: "Algorithmic challenges",
+    label: "IEEE",
+    title: "IEEE — Engineering & Professional Development",
+    header: "// PROFESSIONAL ACHIEVEMENT",
+    subtitle: "IEEE XTREME UNI RANK 4",
     description: "Competed in the global 24-hour programming hackathon, solving algorithmic and data structure problems. Ranked 4th at the University level.",
     type: "achievement"
   },
   {
     id: 3,
     year: "2024",
-    title: "MERN Stack Specialization",
-    subtitle: "Advanced web engineering",
-    description: "Mastered building server-side REST API controllers, MongoDB collections, JWT authentications, and stateful React interfaces.",
-    type: "education"
+    label: "MERN",
+    title: "MERN Stack Development",
+    header: "// ENGINEERING DEVELOPMENT",
+    subtitle: "FULL-STACK FOUNDATIONS",
+    description: "Developing applications across the frontend, backend, APIs, databases, authentication, and business workflows using the MERN ecosystem.",
+    type: "engineering"
   },
   {
     id: 4,
     year: "2023",
-    title: "300+ Algorithmic Challenges",
-    subtitle: "Data structures focus",
-    description: "Solved algorithmic challenges on LeetCode, HackerRank, and GeeksforGeeks, focusing on arrays, binary search trees, and dynamic programming.",
-    type: "achievement"
+    label: "DEVELOPMENT",
+    title: "Building Software Foundations",
+    header: "// DEVELOPMENT FOUNDATION",
+    subtitle: "300+ ALGORITHMIC CHALLENGES",
+    description: "Strengthened my programming fundamentals through hands-on development, problem solving, and practical application building.",
+    type: "foundation"
   },
   {
     id: 5,
     year: "2022",
-    title: "Anna University Academic Track",
-    subtitle: "Foundations of computing",
-    description: "Began Bachelor of Engineering in Computer Science. Focused on OOP, database management systems, networks, and software design principles.",
+    label: "ANNA UNIVERSITY",
+    title: "Anna University — Computer Science Engineering",
+    header: "// ACADEMIC FOUNDATION",
+    subtitle: "COMPUTER SCIENCE FOUNDATIONS",
+    description: "Built a foundation in programming, object-oriented concepts, databases, networking, and software engineering principles.",
     type: "education"
   }
 ];
