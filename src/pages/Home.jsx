@@ -428,7 +428,7 @@ export default function Home({ setActiveSection }) {
                   title={p.hoverText}
                 >
                   <div className="aspect-video w-full overflow-hidden bg-bg-primary border-b border-border-primary">
-                    <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
+                    <img src={p.image} alt={p.altText || p.title} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-5 text-left space-y-1">
                     <span className="font-mono text-[9px] text-brand-gold font-bold uppercase">{p.client}</span>
@@ -538,7 +538,7 @@ export default function Home({ setActiveSection }) {
                   </div>
 
                   <div className="rounded-xl overflow-hidden border border-border-primary bg-bg-primary">
-                    <img src={selectedProject.image} alt={selectedProject.title} className="w-full object-cover max-h-[400px]" />
+                    <img src={selectedProject.image} alt={selectedProject.altText || selectedProject.title} className="w-full object-cover max-h-[400px]" />
                   </div>
                 </div>
               </motion.div>
