@@ -11,7 +11,7 @@ export const personalInfo = {
   github: "https://github.com/Hari-2812",
   linkedin: "https://www.linkedin.com/in/hari-prasath-72b702259/",
   whatsapp: "https://wa.me/919361876698",
-  resumeUrl: "https://drive.google.com/file/d/18xS4C22_Rbpu8-mN5XlN9dQFKU0I7TOE/view?usp=drive_link",
+  resumeUrl: "https://drive.google.com/file/d/1-qtVDlA2euqf35XjWq0IIUXerrmmIgmq/view?usp=sharing",
 };
 
 export const achievements = [
